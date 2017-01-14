@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flame", "Flame\Flame.csproj", "{4009D264-13E8-428C-8519-3A2163A7B38F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlameTest", "FlameTest\FlameTest.csproj", "{7640B526-9A39-4401-8CFF-A94631EAB1CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flame", "Flame\Flame.csproj", "{2E4845AF-5BA1-4529-ACB0-9B697184F059}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4009D264-13E8-428C-8519-3A2163A7B38F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4009D264-13E8-428C-8519-3A2163A7B38F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4009D264-13E8-428C-8519-3A2163A7B38F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4009D264-13E8-428C-8519-3A2163A7B38F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7640B526-9A39-4401-8CFF-A94631EAB1CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7640B526-9A39-4401-8CFF-A94631EAB1CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7640B526-9A39-4401-8CFF-A94631EAB1CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7640B526-9A39-4401-8CFF-A94631EAB1CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E4845AF-5BA1-4529-ACB0-9B697184F059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E4845AF-5BA1-4529-ACB0-9B697184F059}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E4845AF-5BA1-4529-ACB0-9B697184F059}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E4845AF-5BA1-4529-ACB0-9B697184F059}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
