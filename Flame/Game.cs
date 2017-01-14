@@ -38,6 +38,11 @@ namespace Flame
             GL.LoadMatrix(ref projection);
         }
 
+        private void SetUpGL(double width, double height)
+        {
+
+        }
+
         public void Add(GameThing thing)
         {
             _things.Add(thing);
