@@ -11,6 +11,7 @@ namespace Flame.Sprite
         public Sprite(Game game, int x, int y)
         {
             Game = game;
+            Position = new Vector(x, y);
         }
         public Vector Position { get; set; }
     }
