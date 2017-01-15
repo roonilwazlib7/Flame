@@ -21,7 +21,9 @@ namespace Flame.Sprites
             Position = new Vector(x, y);
             Pivot = new Vector(0, 0);
             Color = Color.White;
+            TextureMap = new TextureMap();
             Rotation = 0;
+            Opacity = 1;
             Game = game;
 
             _renderer = game.Renderer;
@@ -29,6 +31,7 @@ namespace Flame.Sprites
         public Vector Position { get; set; }
         public Vector Pivot { get; set; }
         public Color Color { get; set; }
+        public TextureMap TextureMap { get; set; }
         public double Rotation { get; set; }
         public double Opacity { get; set; }
 
@@ -42,7 +45,7 @@ namespace Flame.Sprites
             }
             else if (_renderObject is Texture)
             {
-                _renderer.DrawTexture(_renderTexture);
+                _renderer.DrawTexture(_renderTexture, TextureMap, _renderRectangle, Color, Opacity);
             }
             else
             {
@@ -54,7 +57,6 @@ namespace Flame.Sprites
 
         public override void Update()
         {
-            Rotation += 20 * Game.Delta;
         }
 
         public Sprite BindToTriangle(Triangle triangle)
@@ -72,6 +74,7 @@ namespace Flame.Sprites
         public Sprite BindToTexture(string textureId)
         {
             _renderObject = _renderTexture = Game.Assets.GetTexture(textureId);
+            _renderRectangle = new Geometry.Rectangle(Position.X, Position.Y, _renderTexture.Width, _renderTexture.Height);
             return this;
         }
     }

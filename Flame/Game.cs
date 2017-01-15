@@ -101,22 +101,22 @@ namespace Flame
 
         public void Update()
         {
-            _cleanedThings.Clear();
+           // _cleanedThings.Clear();
             foreach(GameThing thing in _things)
             {
                 thing.Update();
                 if (!thing.Trashed)
                 {
-                    _cleanedThings.Add(thing);
+                   // _cleanedThings.Add(thing);
                 }
             }
-            _things.Clear();
-            _things.AddRange(_cleanedThings);
+            //_things.Clear();
+            //_things.AddRange(_cleanedThings);
         }
 
         public void Draw()
         {
-            _things.Sort();
+            //_things.Sort();
             foreach(GameThing thing in _things)
             {
                 thing.Draw();

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Flame.Geometry
 {
-    public class Rectangle
+    public class Rectangle: Shape
     {
         public Rectangle(double x, double y, double width, double height)
         {

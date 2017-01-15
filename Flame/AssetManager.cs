@@ -41,7 +41,11 @@ namespace Flame
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)TextureWrapMode.Repeat);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)TextureWrapMode.Repeat);
 
-            Textures.Add(id, new Texture(tex));
+            Texture texture = new Texture(tex);
+            texture.Width = data.Width;
+            texture.Height = data.Height;
+
+            Textures.Add(id, texture);
         }
         public Texture GetTexture(string id)
         {

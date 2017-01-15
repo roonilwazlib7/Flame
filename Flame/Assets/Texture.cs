@@ -13,5 +13,7 @@ namespace Flame.Assets
             Id = id;
         }
         public int Id { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
     }
 }

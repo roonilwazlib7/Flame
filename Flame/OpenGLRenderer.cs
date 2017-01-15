@@ -78,9 +78,35 @@ namespace Flame
 
         }
 
-        public void DrawTexture(Flame.Assets.Texture texture)
+        public void DrawTexture(Assets.Texture texture, Assets.TextureMap textureMap, Geometry.Rectangle textureShape, Color color, double opacity)
         {
+            GL.Enable(EnableCap.Texture2D);
+            GL.BindTexture(TextureTarget.Texture2D, texture.Id);
+            //GL.Enable(EnableCap.Blend);
+            //GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+            //GL.Color4(color.R, color.G, color.B, opacity);
 
+            GL.Begin(PrimitiveType.Triangles);
+
+            GL.TexCoord2(textureMap.U, textureMap.V); // top left
+            GL.Vertex3(textureShape.X, textureShape.Y, _z);
+            
+            GL.TexCoord2(textureMap.U + textureMap.Width, textureMap.V); //top right
+            GL.Vertex3(textureShape.X + textureShape.Width, textureShape.Y, _z);
+
+            GL.TexCoord2(textureMap.U, textureMap.V + textureMap.Height); //bottom left
+            GL.Vertex3(textureShape.X, textureShape.Y + textureShape.Height, _z);
+
+            GL.TexCoord2(textureMap.U + textureMap.Width, textureMap.V); //top right
+            GL.Vertex3(textureShape.X + textureShape.Width, textureShape.Y, _z);
+
+            GL.TexCoord2(textureMap.U + textureMap.Width, textureMap.V + textureMap.Height); // bottom right
+            GL.TexCoord2(textureShape.X + textureShape.Width, textureShape.Y + textureShape.Height);
+
+            GL.TexCoord2(textureMap.U, textureMap.V + textureMap.Height); // bottom left
+            GL.Vertex3(textureShape.X, textureShape.Y + textureShape.Height, _z);
+
+            GL.End();
         }
     }
 }
