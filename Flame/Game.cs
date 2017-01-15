@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
+using Flame;
 using Flame.Sprites;
 
 namespace Flame
@@ -15,12 +16,21 @@ namespace Flame
         private List<GameThing> _things;
         private List<GameThing> _cleanedThings;
         private OpenGLRenderer _renderer;
+        private AssetManager _assetManager = new AssetManager();
 
         public Game(): base()
         {
             _cleanedThings = new List<GameThing>();
             _things = new List<GameThing>();
             _renderer = new OpenGLRenderer();
+        }
+
+        public AssetManager Assets
+        {
+            get
+            {
+                return _assetManager;
+            }
         }
 
         public OpenGLRenderer Renderer
