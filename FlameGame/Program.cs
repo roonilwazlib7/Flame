@@ -14,8 +14,8 @@ namespace FlameGame
         [STAThread]
         static void Main()
         {
-            Flame.Game game = new Flame.Game();
-            game.Run();
+            FlameTheGame game = new FlameTheGame();
+            game.Start();
         }
     }
 }

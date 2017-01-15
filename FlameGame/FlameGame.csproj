@@ -58,6 +58,7 @@
     <Compile Include="FlameGame.Designer.cs">
       <DependentUpon>FlameGame.cs</DependentUpon>
     </Compile>
+    <Compile Include="FlameTheGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FlameGame.resx">

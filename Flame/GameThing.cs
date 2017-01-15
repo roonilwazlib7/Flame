@@ -13,11 +13,11 @@ namespace Flame
         private int _uid;
         private bool _trash = false;
 
-        public void Update()
+        public virtual void Update()
         {
 
         }
-        public void Draw()
+        public virtual void Draw()
         {
             
         }
