@@ -12,12 +12,14 @@ namespace Flame.Sprites
     {
         private object _renderObject;
         private Triangle _renderTriangle;
+        private Geometry.Rectangle _renderRectangle;
         private Texture _renderTexture;
         private OpenGLRenderer _renderer;
 
         public Sprite(Game game, int x, int y): base()
         {
             Position = new Vector(x, y);
+            Pivot = new Vector(0, 0);
             Color = Color.White;
             Rotation = 0;
             Game = game;
@@ -25,6 +27,7 @@ namespace Flame.Sprites
             _renderer = game.Renderer;
         }
         public Vector Position { get; set; }
+        public Vector Pivot { get; set; }
         public Color Color { get; set; }
         public double Rotation { get; set; }
         public double Opacity { get; set; }
