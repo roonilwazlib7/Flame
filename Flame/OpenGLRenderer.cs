@@ -77,5 +77,10 @@ namespace Flame
         {
 
         }
+
+        public void DrawTexture(Flame.Assets.Texture texture)
+        {
+
+        }
     }
 }

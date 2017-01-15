@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace Flame
 {
-    public class GameThing
+    public class GameThing: IDisposable, IComparable<GameThing>
     {
         private Game _game;
         private Dictionary<string, List< Func<Message, Message>  > > _messageListeners;
-        private int _uid;
-        private bool _trash = false;
+        private int _uid = 0;
+        private int _layerIndex = 0;
+        private bool _trashed = false;
+
+
+        public GameThing()
+        {
+        }
 
         public virtual void Update()
         {
@@ -20,6 +26,16 @@ namespace Flame
         public virtual void Draw()
         {
             
+        }
+        public void Trash()
+        {
+            _trashed = true;
+            Emit("Trash", new Message(this));
+        }
+        public void Dispose()
+        {
+            // this is were we need to clear up some things
+            Emit("Dispose", new Message(this));
         }
 
         public void On(string messageKey, Func<Message, Message> delagte)
@@ -45,6 +61,22 @@ namespace Flame
             }
         }
 
+        public int CompareTo(GameThing thing)
+        {
+            if (thing == null)
+            {
+                return 1;
+            }
+            else if (LayerIndex == thing.LayerIndex)
+            {
+                return Uid.CompareTo(thing.Uid);
+            }
+            else
+            {
+                return LayerIndex.CompareTo(thing.LayerIndex);
+            }
+        }
+
         public int Uid
         {
             get
@@ -67,6 +99,36 @@ namespace Flame
             {
                 _game = value;
             }
+        }
+
+        public bool Trashed
+        {
+            get
+            {
+                return _trashed;
+            }
+        }
+
+        public int LayerIndex
+        {
+            get
+            {
+                return _layerIndex;
+            }
+            set
+            {
+                _layerIndex = value;
+            }
+        }
+
+        public static bool operator== (GameThing thing1, GameThing thing2)
+        {
+            return thing1.Uid == thing2.Uid;
+        }
+
+        public static bool operator !=(GameThing thing1, GameThing thing2)
+        {
+            return thing1.Uid != thing2.Uid;
         }
     }
 }

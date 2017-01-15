@@ -15,8 +15,8 @@ namespace FlameGame
         public FlameTheGame()
         {
             _game = new Flame.Game();
-
-            _game.Assets.LoadTexture("", "test");
+            _game.Assets.LoadTexture("Assets/Images/test.png", "test");
+            _game.Assets.LoadTexture("Assets/Images/test2.png", "test2");
 
             Sprite t = new Sprite(_game, 0, 0);
             t.BindToTriangle(new Triangle(0, 0, 500, 0, 0, 500));

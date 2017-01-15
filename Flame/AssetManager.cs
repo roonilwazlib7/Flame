@@ -43,5 +43,9 @@ namespace Flame
 
             Textures.Add(id, new Texture(tex));
         }
+        public Texture GetTexture(string id)
+        {
+            return Textures[id];
+        }
     }
 }

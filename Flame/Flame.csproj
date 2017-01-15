@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssetManager.cs" />
+    <Compile Include="Assets\Texture.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameThing.cs" />
     <Compile Include="Geometry\Circle.cs" />

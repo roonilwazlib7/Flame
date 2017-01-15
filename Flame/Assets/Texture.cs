@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Flame.Assets
 {
-    class Texture
+    public class Texture
     {
         public Texture(int id)
         {

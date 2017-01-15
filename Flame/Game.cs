@@ -17,12 +17,16 @@ namespace Flame
         private List<GameThing> _cleanedThings;
         private OpenGLRenderer _renderer;
         private AssetManager _assetManager = new AssetManager();
+        private int _uidCounter = 0;
 
-        public Game(): base()
+        public Game(string title = "FlameGame"): base()
         {
             _cleanedThings = new List<GameThing>();
             _things = new List<GameThing>();
             _renderer = new OpenGLRenderer();
+
+            Title = title;
+            WindowState = WindowState.Maximized;
         }
 
         public AssetManager Assets
@@ -52,8 +56,7 @@ namespace Flame
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            Title = "Flame";
-            SetUpGL(0, 0, ClientRectangle.Width, ClientRectangle.Height);
+            SetUpGL(0, 0, ClientRectangle.Width, ClientRectangle.Height);    
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
@@ -92,28 +95,33 @@ namespace Flame
 
         public void Add(GameThing thing)
         {
+            thing.Uid = _uidCounter++;
             _things.Add(thing);
         }
 
         public void Update()
         {
+            _cleanedThings.Clear();
             foreach(GameThing thing in _things)
             {
                 thing.Update();
+                if (!thing.Trashed)
+                {
+                    _cleanedThings.Add(thing);
+                }
             }
+            _things.Clear();
+            _things.AddRange(_cleanedThings);
         }
 
         public void Draw()
         {
+            _things.Sort();
             foreach(GameThing thing in _things)
             {
                 thing.Draw();
             }
         }
 
-        public void UpdateThings()
-        {
-            
-        }
     }
 }
