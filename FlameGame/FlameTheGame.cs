@@ -4,32 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenTK;
+using OpenTK.Input;
 using Flame.Sprites;
 using Flame.Geometry;
+using Flame.Games;
 
 namespace FlameGame
 {
-    class FlameTheGame
+    class FlameTheGame: Game
     {
-        Flame.Game _game;
-        public FlameTheGame()
+        Sprite _testSprite;
+        public override void Update()
         {
-            _game = new Flame.Game();
-            _game.Assets.LoadTexture("Assets/Images/test.png", "test");
-            _game.Assets.LoadTexture("Assets/Images/test2.png", "test2");
-
-            Sprite t = new Sprite(_game, 0, 0);
-
-            t.Opacity = 0.5;
-            t.BindToTexture("test");
-            t.Body.Velocity.X = 100;
-            t.Body.Acceleration.Y = 300;
-
-            _game.Add(t);
+            base.Update();
+            _testSprite.Position.X = Mouse.X;
+            _testSprite.Position.Y = Mouse.Y;
         }
-        public void Start()
+
+        public override void Initialize()
         {
-            _game.Run(30);
+            _testSprite = new Sprite(this, 0, 0);
+            _testSprite.BindToTexture("test");
+            _testSprite.TextureMap.U = 0.5;
+            _testSprite.TextureMap.Width = 0.5;
+            Add(_testSprite);
+        }
+
+        public override void LoadAssets()
+        {
+            Assets.LoadTexture("Assets/Images/test2.png", "test");
         }
     }
 }

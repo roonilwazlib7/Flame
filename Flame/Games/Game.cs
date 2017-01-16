@@ -8,15 +8,19 @@ using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using Flame;
 using Flame.Sprites;
+using Flame.Games.Modules;
+using OpenTK.Input;
 
-namespace Flame
+namespace Flame.Games
 {
     public class Game: GameWindow
     {
         private List<GameThing> _things;
         private List<GameThing> _cleanedThings;
         private OpenGLRenderer _renderer;
+
         private AssetManager _assetManager = new AssetManager();
+
         private int _uidCounter = 0;
 
         public Game(string title = "FlameGame"): base()
@@ -25,9 +29,21 @@ namespace Flame
             _things = new List<GameThing>();
             _renderer = new OpenGLRenderer();
 
+            Particles = new Particles(this);
+            Tween = new Tween(this);
+            Timer = new Timer(this);
+
             Title = title;
             WindowState = WindowState.Maximized;
+
+            LoadAssets();
+            Initialize();
         }
+
+        #region Properties
+        public Particles Particles { get; }
+        public Tween Tween { get; }
+        public Timer Timer { get; }
 
         public AssetManager Assets
         {
@@ -52,11 +68,13 @@ namespace Flame
                 return RenderTime;
             }
         }
+        #endregion
 
+        #region Events
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            SetUpGL(0, 0, ClientRectangle.Width, ClientRectangle.Height);    
+            SetUpGL(0, 0, ClientRectangle.Width, ClientRectangle.Height);
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
@@ -79,6 +97,13 @@ namespace Flame
             SetUpGL(0, 0, ClientRectangle.Width, ClientRectangle.Height);
         }
 
+        protected override void OnKeyDown(KeyboardKeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+            
+        }
+        #endregion
+
         private void SetUpGL(double x, double y, double width, double height)
         {
             double halfWidth = width / 2;
@@ -99,7 +124,7 @@ namespace Flame
             _things.Add(thing);
         }
 
-        public void Update()
+        public virtual void Update()
         {
            _cleanedThings.Clear();
             foreach(GameThing thing in _things)
@@ -114,7 +139,7 @@ namespace Flame
             _things.AddRange(_cleanedThings);
         }
 
-        public void Draw()
+        public virtual void Draw()
         {
             //_things.Sort();
             foreach(GameThing thing in _things)
@@ -123,5 +148,19 @@ namespace Flame
             }
         }
 
+        public virtual void LoadAssets()
+        {
+
+        }
+
+        public virtual void UnLoadAssets()
+        {
+
+        }
+
+        public virtual void Initialize()
+        {
+
+        }
     }
 }

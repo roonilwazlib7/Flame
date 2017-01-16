@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using Flame.Geometry;
 using Flame.Assets;
+using Flame.Games;
 namespace Flame.Sprites
 {
     public class Sprite: GameThing

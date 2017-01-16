@@ -15,7 +15,7 @@ namespace FlameGame
         static void Main()
         {
             FlameTheGame game = new FlameTheGame();
-            game.Start();
+            game.Run(30);
         }
     }
 }

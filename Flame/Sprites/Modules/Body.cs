@@ -13,9 +13,14 @@ namespace Flame.Sprites.Modules
         {
             Velocity = new Vector(0, 0);
             Acceleration = new Vector(0, 0);
+            Omega = 0;
+            Alpha = 0;
         }
         public Vector Velocity { get; set; }
         public Vector Acceleration { get; set; }
+
+        public double Omega { get; set; }
+        public double Alpha { get; set; }
 
         public void Update()
         {
@@ -24,6 +29,9 @@ namespace Flame.Sprites.Modules
 
             Velocity.X += Acceleration.X * Sprite.Game.Delta;
             Velocity.Y += Acceleration.Y * Sprite.Game.Delta;
+
+            Sprite.Rotation += Omega * Sprite.Game.Delta;
+            Omega += Alpha * Sprite.Game.Delta;
         }
     }
 }

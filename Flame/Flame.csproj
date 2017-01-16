@@ -52,7 +52,8 @@
     <Compile Include="AssetManager.cs" />
     <Compile Include="Assets\Texture.cs" />
     <Compile Include="Assets\TextureMap.cs" />
-    <Compile Include="Game.cs" />
+    <Compile Include="Games\Game.cs" />
+    <Compile Include="Games\Modules\Module.cs" />
     <Compile Include="GameThing.cs" />
     <Compile Include="Geometry\Circle.cs" />
     <Compile Include="Geometry\Rectangle.cs" />

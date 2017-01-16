@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Flame.Games;
 
 namespace Flame
 {
@@ -17,6 +18,7 @@ namespace Flame
 
         public GameThing()
         {
+            _messageListeners = new Dictionary<string, List<Func<Message, Message>>>();
         }
 
         public virtual void Update()
