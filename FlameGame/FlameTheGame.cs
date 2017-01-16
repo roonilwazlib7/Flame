@@ -8,6 +8,7 @@ using OpenTK.Input;
 using Flame.Sprites;
 using Flame.Geometry;
 using Flame.Games;
+using Flame;
 
 namespace FlameGame
 {
@@ -17,22 +18,31 @@ namespace FlameGame
         public override void Update()
         {
             base.Update();
-            _testSprite.Position.X = Mouse.X;
-            _testSprite.Position.Y = Mouse.Y;
         }
 
         public override void Initialize()
         {
-            _testSprite = new Sprite(this, 0, 0);
+            _testSprite = new Sprite(this, 500, 500);
             _testSprite.BindToTexture("test");
-            _testSprite.TextureMap.U = 0.5;
-            _testSprite.TextureMap.Width = 0.5;
+            _testSprite.Pivot.X = _testSprite.Rectangle.HalfWidth;
+            _testSprite.Pivot.Y = _testSprite.Rectangle.HalfHeight;
             Add(_testSprite);
+
+            Sprite t2 = new Sprite(this, 500, 500);
+            t2.BindToTexture("test");
+            //Add(t2);
+            _testSprite.On("MouseLeave", Clicked);
         }
 
         public override void LoadAssets()
         {
             Assets.LoadTexture("Assets/Images/test2.png", "test");
+        }
+
+        Message Clicked(Message m)
+        {
+            m.Sender<Sprite>().Position.X = 0;
+            return m;
         }
     }
 }

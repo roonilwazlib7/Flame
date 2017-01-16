@@ -20,8 +20,10 @@ namespace Flame
             GL.ClearColor(Color.BlueViolet);          
             GL.MatrixMode(MatrixMode.Modelview);
             GL.LoadMatrix(ref modelview);
-
             Rotation = 0;
+            GL.Enable(EnableCap.Blend);
+            GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+
         }
 
         public double Rotation { get; set; }
@@ -33,12 +35,16 @@ namespace Flame
 
         public void PreSpriteDraw(Sprite sprite)
         {
-            GL.Rotate(sprite.Rotation, -sprite.Pivot.X, -sprite.Pivot.Y, 1);
+            double x = sprite.Position.X + sprite.Pivot.X;
+            double y = sprite.Position.Y + sprite.Pivot.Y;
+            GL.PushMatrix();
+            GL.Translate(x, y, _z);
+            GL.Rotate(sprite.Rotation.Value, 0, 0, 1);
         }
 
         public void PostSpriteDraw(Sprite sprite)
         {
-            GL.Rotate(-sprite.Rotation, -sprite.Pivot.X, -sprite.Pivot.Y, 1);
+            GL.PopMatrix();
         }
 
         public void DrawTriangle(Geometry.Triangle triangle, Color color)
@@ -56,7 +62,7 @@ namespace Flame
         public void DrawEmptyCircle(Geometry.Circle circle, Color color)
         {
             GL.Begin(PrimitiveType.LineLoop);
-            GL.Color3(color);
+            GL.Color4(color.R, color.G, color.B, 1.0);
 
             for (int i = 0; i < 360; i++)
             {
@@ -78,35 +84,37 @@ namespace Flame
 
         }
 
-        public void DrawTexture(Assets.Texture texture, Assets.TextureMap textureMap, Geometry.Rectangle textureShape, Color color, double opacity)
+        public void DrawTexture(Assets.Texture texture, Assets.TextureMap textureMap, Geometry.Rectangle textureShape, Color color, double opacity, Geometry.Vector pivot)
         {
             GL.Enable(EnableCap.Texture2D);
-            GL.BindTexture(TextureTarget.Texture2D, texture.Id);
-            GL.Enable(EnableCap.Blend);
-            GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
-            GL.Color4(color.R, color.G, color.B, opacity);
-
             GL.Begin(PrimitiveType.Triangles);
 
+            double x = -pivot.X;
+            double y = -pivot.Y;
+
+            GL.BindTexture(TextureTarget.Texture2D, texture.Id);
+            GL.Color4(color.R, color.G, color.B, opacity);
+
             GL.TexCoord2(textureMap.U, textureMap.V); // top left
-            GL.Vertex3(textureShape.X, textureShape.Y, _z);
+            GL.Vertex3(0 + x, 0 + y, _z);
             
             GL.TexCoord2(textureMap.U + textureMap.Width, textureMap.V); //top right
-            GL.Vertex3(textureShape.X + textureShape.Width, textureShape.Y, _z);
+            GL.Vertex3(textureShape.Width + x, 0 + y, _z);
 
             GL.TexCoord2(textureMap.U, textureMap.V + textureMap.Height); //bottom left
-            GL.Vertex3(textureShape.X, textureShape.Y + textureShape.Height, _z);
+            GL.Vertex3(0 + x, textureShape.Height + y, _z);
 
             GL.TexCoord2(textureMap.U + textureMap.Width, textureMap.V); //top right
-            GL.Vertex3(textureShape.X + textureShape.Width, textureShape.Y, _z);
+            GL.Vertex3(textureShape.Width + x, 0 + y, _z);
 
             GL.TexCoord2(textureMap.U + textureMap.Width, textureMap.V + textureMap.Height); // bottom right
-            GL.Vertex3(textureShape.X + textureShape.Width, textureShape.Y + textureShape.Height, _z);
+            GL.Vertex3(textureShape.Width + x, textureShape.Height + y, _z);
 
             GL.TexCoord2(textureMap.U, textureMap.V + textureMap.Height); // bottom left
-            GL.Vertex3(textureShape.X, textureShape.Y + textureShape.Height, _z);
+            GL.Vertex3(0 + x, textureShape.Height + y, _z);
 
             GL.End();
+            GL.Disable(EnableCap.Texture2D);
         }
     }
 }

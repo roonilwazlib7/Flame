@@ -30,7 +30,7 @@ namespace Flame.Sprites.Modules
             Velocity.X += Acceleration.X * Sprite.Game.Delta;
             Velocity.Y += Acceleration.Y * Sprite.Game.Delta;
 
-            Sprite.Rotation += Omega * Sprite.Game.Delta;
+            Sprite.Rotation.Value += Omega * Sprite.Game.Delta;
             Omega += Alpha * Sprite.Game.Delta;
         }
     }
