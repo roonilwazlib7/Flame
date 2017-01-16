@@ -59,6 +59,7 @@ namespace Flame.Sprites
         {
         }
 
+        #region Binding
         public Sprite BindToTriangle(Triangle triangle)
         {
             _renderObject = _renderTriangle = triangle;
@@ -77,5 +78,15 @@ namespace Flame.Sprites
             _renderRectangle = new Geometry.Rectangle(Position.X, Position.Y, _renderTexture.Width, _renderTexture.Height);
             return this;
         }
+        #endregion
+
+        #region General
+        public Sprite PivotCenter()
+        {
+            Pivot.X = _renderRectangle.HalfWidth;
+            Pivot.Y = _renderRectangle.HalfHeight;
+            return this;
+        }
+        #endregion
     }
 }

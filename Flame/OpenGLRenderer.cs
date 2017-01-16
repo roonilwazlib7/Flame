@@ -33,12 +33,12 @@ namespace Flame
 
         public void PreSpriteDraw(Sprite sprite)
         {
-            GL.Rotate(sprite.Rotation, Vector3d.UnitZ);
+            GL.Rotate(sprite.Rotation, -sprite.Pivot.X, -sprite.Pivot.Y, 1);
         }
 
         public void PostSpriteDraw(Sprite sprite)
         {
-            GL.Rotate(-sprite.Rotation, Vector3d.UnitZ);
+            GL.Rotate(-sprite.Rotation, -sprite.Pivot.X, -sprite.Pivot.Y, 1);
         }
 
         public void DrawTriangle(Geometry.Triangle triangle, Color color)
