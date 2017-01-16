@@ -21,9 +21,9 @@ namespace FlameGame
             Sprite t = new Sprite(_game, 0, 0);
 
             t.Opacity = 0.5;
-            t.Rotation = 40;
             t.BindToTexture("test");
-            t.PivotCenter();
+            t.Body.Velocity.X = 100;
+            t.Body.Acceleration.Y = 300;
 
             _game.Add(t);
         }

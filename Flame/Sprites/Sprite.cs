@@ -26,12 +26,15 @@ namespace Flame.Sprites
             Opacity = 1;
             Game = game;
 
+            Body = new Modules.Body(this);
+
             _renderer = game.Renderer;
         }
         public Vector Position { get; set; }
         public Vector Pivot { get; set; }
         public Color Color { get; set; }
         public TextureMap TextureMap { get; set; }
+        public Modules.Body Body { get; set; }
         public double Rotation { get; set; }
         public double Opacity { get; set; }
 
@@ -45,6 +48,8 @@ namespace Flame.Sprites
             }
             else if (_renderObject is Texture)
             {
+                _renderRectangle.X = Position.X;
+                _renderRectangle.Y = Position.Y;
                 _renderer.DrawTexture(_renderTexture, TextureMap, _renderRectangle, Color, Opacity);
             }
             else
@@ -57,6 +62,7 @@ namespace Flame.Sprites
 
         public override void Update()
         {
+            Body.Update();
         }
 
         #region Binding
