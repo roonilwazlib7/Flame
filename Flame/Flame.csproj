@@ -53,6 +53,7 @@
     <Compile Include="Assets\Texture.cs" />
     <Compile Include="Assets\TextureMap.cs" />
     <Compile Include="Games\Game.cs" />
+    <Compile Include="Games\Modules\Factory.cs" />
     <Compile Include="Games\Modules\Module.cs" />
     <Compile Include="Games\Modules\Particles.cs" />
     <Compile Include="Games\Modules\Timer.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Sprites\Modules\Events.cs" />
     <Compile Include="Sprites\Modules\Module.cs" />
     <Compile Include="Sprites\Sprite.cs" />
+    <Compile Include="StateMachine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

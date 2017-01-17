@@ -29,6 +29,7 @@ namespace Flame.Sprites
 
             Body = new Modules.Body(this);
             Events = new Modules.Events(this);
+            State = new StateMachine<Sprite>(this);
 
             _renderer = game.Renderer;
         }
@@ -40,6 +41,7 @@ namespace Flame.Sprites
         public TextureMap TextureMap { get; set; }
         public Modules.Body Body { get; set; }
         public Modules.Events Events { get; }
+        public StateMachine<Sprite> State { get; }
         public SpriteRotation Rotation { get; set; }
         public SpriteOpacity Opacity { get; set; }
         public Geometry.Rectangle Rectangle
@@ -90,6 +92,7 @@ namespace Flame.Sprites
         {
             Body.Update();
             Events.Update();
+            State.Update();
         }
 
         #region Binding

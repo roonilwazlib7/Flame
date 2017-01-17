@@ -32,6 +32,7 @@ namespace Flame.Games
             Particles = new Particles(this);
             Tween = new Tween(this);
             Timer = new Timer(this);
+            Factory = new Factory(this);
 
             Title = title;
             WindowState = WindowState.Maximized;
@@ -44,6 +45,7 @@ namespace Flame.Games
         public Particles Particles { get; }
         public Tween Tween { get; }
         public Timer Timer { get; }
+        public Factory Factory { get; }
 
         public AssetManager Assets
         {

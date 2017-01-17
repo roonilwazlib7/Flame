@@ -22,16 +22,13 @@ namespace FlameGame
 
         public override void Initialize()
         {
-            _testSprite = new Sprite(this, 500, 500);
+            _testSprite = Factory.Sprite(500, 500);
             _testSprite.BindToTexture("test");
             _testSprite.Pivot.X = _testSprite.Rectangle.HalfWidth;
             _testSprite.Pivot.Y = _testSprite.Rectangle.HalfHeight;
-            Add(_testSprite);
-
-            Sprite t2 = new Sprite(this, 500, 500);
-            t2.BindToTexture("test");
-            //Add(t2);
-            _testSprite.On("MouseLeave", Clicked);
+            _testSprite.Rotation.Value = 45;
+            _testSprite.State.AddState("Enter", new EnterState());
+            _testSprite.State.Switch("Enter");
         }
 
         public override void LoadAssets()
@@ -43,6 +40,15 @@ namespace FlameGame
         {
             m.Sender<Sprite>().Position.X = 0;
             return m;
+        }
+    }
+    class EnterState: State<Sprite>
+    {
+        public override void Start(Sprite controlObject)
+        {
+            controlObject.Game.Tween.CreateTween(controlObject.Opacity, 1)
+                .From(new SpriteOpacity(0))
+                .To(new SpriteOpacity(1));
         }
     }
 }
