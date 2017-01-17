@@ -21,6 +21,7 @@ namespace Flame.Sprites
         {
             Position = new Vector(x, y);
             Pivot = new Vector(0, 0);
+            Repeat = new Vector(0, 0);
             Color = Color.White;
             TextureMap = new TextureMap();
             Rotation = new SpriteRotation(0.0);
@@ -37,11 +38,12 @@ namespace Flame.Sprites
         #region Properties
         public Vector Position { get; set; }
         public Vector Pivot { get; set; }
+        public Vector Repeat { get; set; }
         public Color Color { get; set; }
         public TextureMap TextureMap { get; set; }
         public Modules.Body Body { get; set; }
         public Modules.Events Events { get; }
-        public StateMachine<Sprite> State { get; }
+        public StateMachine<Sprite> State { get; set; }
         public SpriteRotation Rotation { get; set; }
         public SpriteOpacity Opacity { get; set; }
         public Geometry.Rectangle Rectangle
@@ -78,7 +80,16 @@ namespace Flame.Sprites
             }
             else if (_renderObject is Texture)
             {
-                _renderer.DrawTexture(_renderTexture, TextureMap, _renderRectangle, Color, Opacity.Value, Pivot);
+                Geometry.Rectangle drawRec = new Geometry.Rectangle(0, 0, Rectangle.Width, Rectangle.Height);
+                for (int i = 0; i < Repeat.X + 1; i++)
+                {
+                    for (int j = 0; j < Repeat.Y + 1; j++)
+                    {
+                        drawRec.X = i * drawRec.Width;
+                        drawRec.Y = j * drawRec.Height;
+                        _renderer.DrawTexture(_renderTexture, TextureMap, drawRec, Color, Opacity.Value, Pivot);
+                    }
+                }                
             }
             else
             {

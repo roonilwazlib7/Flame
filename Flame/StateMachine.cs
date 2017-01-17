@@ -11,6 +11,11 @@ namespace Flame
         private Dictionary<string, State<T>> _states = new Dictionary<string, State<T>>();
         private State<T> _currentState;
 
+        public static StateMachine<T> Create(T controlObject)
+        {
+            return new StateMachine<T>(controlObject);
+        }
+
         public StateMachine(T controlObject)
         {
             ControlObject = controlObject;

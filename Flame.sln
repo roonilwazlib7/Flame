@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flame", "Flame\Flame.csproj", "{2E4845AF-5BA1-4529-ACB0-9B697184F059}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlameGame", "FlameGame\FlameGame.csproj", "{F5CDCA3D-EAAF-4349-8DCE-7879A907DBD0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cogad", "Cogad\Cogad.csproj", "{CAD1BE69-2820-4BEC-8626-E63E67730B9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{2E4845AF-5BA1-4529-ACB0-9B697184F059}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E4845AF-5BA1-4529-ACB0-9B697184F059}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E4845AF-5BA1-4529-ACB0-9B697184F059}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F5CDCA3D-EAAF-4349-8DCE-7879A907DBD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5CDCA3D-EAAF-4349-8DCE-7879A907DBD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5CDCA3D-EAAF-4349-8DCE-7879A907DBD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5CDCA3D-EAAF-4349-8DCE-7879A907DBD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAD1BE69-2820-4BEC-8626-E63E67730B9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAD1BE69-2820-4BEC-8626-E63E67730B9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAD1BE69-2820-4BEC-8626-E63E67730B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAD1BE69-2820-4BEC-8626-E63E67730B9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
