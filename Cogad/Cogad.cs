@@ -7,6 +7,7 @@ using Flame;
 using Flame.Games;
 using Flame.Sprites;
 using Flame.Debug;
+using Flame.Geometry;
 
 namespace Cogad
 {
@@ -22,6 +23,9 @@ namespace Cogad
             Assets.LoadTexture("Assets/Units/unit1.png", "unit1");
             GameGrid.LoadAssets(this);
             Terrain.LoadAssets(this);
+            Building.LoadAssets(this);
+
+            Building.CreateDefs(this);
         }
         public override void Initialize()
         {
@@ -35,6 +39,11 @@ namespace Cogad
             AddOns.GameGrid.Seed(5, 5, "stone", 2);
             AddOns.GameGrid.Seed(18, 6, "forest-full", 8);
             AddOns.GameGrid.DebugCells();
+
+            Building.Generate(this, "castle", 8, 4);
+            Building.Generate(this, "house", 6, 7);
+            Building.Generate(this, "barn", 4, 2);
+            Building.Generate(this, "barracks", 4, 6);
         }
     }
 }

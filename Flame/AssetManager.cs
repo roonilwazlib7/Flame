@@ -8,15 +8,18 @@ using System.Drawing.Imaging;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using Flame.Assets;
+using System.IO;
 
 namespace Flame
 {
     public class AssetManager
     {
         Dictionary<string, Texture> Textures;
+        Dictionary<string, string> Files;
         public AssetManager()
         {
             Textures = new Dictionary<string, Texture>();
+            Files = new Dictionary<string, string>();
         }
         public void LoadTexture(string path, string id)
         {
@@ -47,9 +50,24 @@ namespace Flame
 
             Textures.Add(id, texture);
         }
+
+        public void LoadFile(string path, string id)
+        {
+            StreamReader r = new StreamReader(path);
+
+            Files.Add(id, r.ReadToEnd());
+
+            r.Close();
+        }
+
         public Texture GetTexture(string id)
         {
             return Textures[id];
+        }
+
+        public string GetFile(string id)
+        {
+            return Files[id];
         }
     }
 }

@@ -53,6 +53,14 @@ namespace Cogad
             int row = (int)Math.Round(position.Y / CellSize);
             return _cellMap[column,row];
         }
+
+        public Vector GetPositionFromCell(int column, int row)
+        {
+            double x = column * CellSize;
+            double y = row * CellSize;
+
+            return new Vector(x, y);
+        }
         public void DebugCells()
         {
             foreach(Cell cell in _cellMap)
