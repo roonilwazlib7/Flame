@@ -51,6 +51,13 @@ namespace Flame.Geometry
             return this;
         }
 
+        public Vector Set(double x, double y)
+        {
+            _x = x;
+            _y = y;
+            return Resolve();
+        }
+
         public Vector Normalize()
         {
             _x /= Magnitude;
@@ -63,13 +70,29 @@ namespace Flame.Geometry
             return 0;
         }
 
+        public double DistanceTo(Vector v)
+        {
+            Vector dif = this - v;
+            dif.Resolve();
+            return dif.Magnitude;
+        }
+
         public static bool operator== (Vector v1, Vector v2)
         {
+            if (Object.Equals(v1, null) || Object.Equals(v2, null)) return false;
             return v1.X == v2.X && v1.Y == v2.Y;
         }
 
         public static bool operator!= (Vector v1, Vector v2)
         {
+            if (Object.Equals(v1, null) && Object.Equals(v2, null))
+            {
+                return false;
+            }
+            if (Object.Equals(v1, null) || Object.Equals(v2, null))
+            {
+                return true;
+            }
             return v1.X != v2.X || v1.Y != v2.Y;
         }
 

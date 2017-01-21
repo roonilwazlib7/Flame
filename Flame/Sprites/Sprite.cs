@@ -30,6 +30,8 @@ namespace Flame.Sprites
 
             Body = new Modules.Body(this);
             Events = new Modules.Events(this);
+            Path = new Modules.Path(this);
+
             State = new StateMachine<Sprite>(this);
 
             _renderer = game.Renderer;
@@ -43,6 +45,7 @@ namespace Flame.Sprites
         public TextureMap TextureMap { get; set; }
         public Modules.Body Body { get; set; }
         public Modules.Events Events { get; }
+        public Modules.Path Path { get; }
         public StateMachine<Sprite> State { get; set; }
         public SpriteRotation Rotation { get; set; }
         public SpriteOpacity Opacity { get; set; }
@@ -60,7 +63,10 @@ namespace Flame.Sprites
             {
                 if (_renderObject is Texture)
                 {
-                    return _renderRectangle.Center;
+                    Vector c = new Vector(Position.X, Position.Y);
+                    c.X += Rectangle.HalfWidth;
+                    c.Y += Rectangle.HalfHeight;
+                    return c;
                 }
                 else
                 {
@@ -104,6 +110,7 @@ namespace Flame.Sprites
             Body.Update();
             Events.Update();
             State.Update();
+            Path.Update();
         }
 
         #region Binding

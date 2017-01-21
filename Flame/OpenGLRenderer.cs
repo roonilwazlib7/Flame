@@ -84,15 +84,28 @@ namespace Flame
 
         }
 
+        public void DrawLine(Geometry.Vector start, Geometry.Vector end, Color color, float lineWidth = 1)
+        {
+            GL.LineWidth(lineWidth);
+            GL.Begin(PrimitiveType.Lines);
+
+            GL.Color4(color.R, color.G, color.B, color.A);
+
+            GL.Vertex2(start.X, start.Y);
+            GL.Vertex2(end.X, end.Y);
+
+            GL.End();
+        }
+
         public void DrawTexture(Assets.Texture texture, Assets.TextureMap textureMap, Geometry.Rectangle textureShape, Color color, double opacity, Geometry.Vector pivot)
         {
             GL.Enable(EnableCap.Texture2D);
+            GL.BindTexture(TextureTarget.Texture2D, texture.Id);
             GL.Begin(PrimitiveType.Triangles);
 
             double x = -pivot.X;
             double y = -pivot.Y;
 
-            GL.BindTexture(TextureTarget.Texture2D, texture.Id);
             GL.Color4(color.R, color.G, color.B, opacity);
 
             GL.TexCoord2(textureMap.U, textureMap.V); // top left
@@ -113,7 +126,7 @@ namespace Flame
             GL.TexCoord2(textureMap.U, textureMap.V + textureMap.Height); // bottom left
             GL.Vertex3(0 + x, textureShape.Height + y, _z);
 
-            GL.End();
+            GL.End();        
             GL.Disable(EnableCap.Texture2D);
         }
     }

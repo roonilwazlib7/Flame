@@ -22,10 +22,18 @@ namespace Flame
         }
 
         public T ControlObject { get; set; }
+        public State<T> CurrentState
+        {
+            get
+            {
+                return _currentState;
+            }
+        }
 
         public void AddState(string id, State<T> state)
         {
             _states.Add(id, state);
+            state.StateMachine = this;
         }
 
         public void Switch(string id)
@@ -50,9 +58,38 @@ namespace Flame
     }
 
     public class State<T>
-    {       
+    {
+        private Dictionary<string, List<Func<Message, Message>>> _messageListeners;
+        public State()
+        {
+            _messageListeners = new Dictionary<string, List<Func<Message, Message>>>();
+        }
+        public StateMachine<T> StateMachine { get; set; }
         public virtual void Start(T controlObject) { }
         public virtual void Update(T controlObject) { }
         public virtual void End(T controlObject) { }
+
+        public void On(string messageKey, Func<Message, Message> delagte)
+        {
+            if (_messageListeners.ContainsKey(messageKey))
+            {
+                _messageListeners[messageKey].Add(delagte);
+            }
+            else
+            {
+                _messageListeners.Add(messageKey, new List<Func<Message, Message>>() { delagte });
+            }
+        }
+
+        public void Emit(string messageKey, Message message)
+        {
+            if (_messageListeners.ContainsKey(messageKey))
+            {
+                foreach (Func<Message, Message> listener in _messageListeners[messageKey])
+                {
+                    listener(message);
+                }
+            }
+        }
     }
 }

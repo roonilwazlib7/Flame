@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using System.Drawing;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
+using OpenTK.Input;
 using Flame;
 using Flame.Sprites;
 using Flame.Games.Modules;
-using OpenTK.Input;
+using Flame.Debug;
 
 namespace Flame.Games
 {
@@ -17,35 +18,46 @@ namespace Flame.Games
     {
         private List<GameThing> _things;
         private List<GameThing> _cleanedThings;
+        private List<GameThing> _thingsToAdd;
         private OpenGLRenderer _renderer;
 
         private AssetManager _assetManager = new AssetManager();
 
         private int _uidCounter = 0;
 
-        public Game(string title = "FlameGame"): base()
+        public Game(string title = "FlameGame"): base(1280, 720, new OpenTK.Graphics.GraphicsMode(32, 24, 0, 8))
         {
+            DebugConsole.AddChannel("Flame", ConsoleColor.DarkRed, ConsoleColor.Black);
+            DebugConsole.AddChannel("Error", ConsoleColor.Red, ConsoleColor.White);
+
             _cleanedThings = new List<GameThing>();
             _things = new List<GameThing>();
+            _thingsToAdd = new List<GameThing>();
             _renderer = new OpenGLRenderer();
 
             Particles = new Particles(this);
             Tween = new Tween(this);
             Timer = new Timer(this);
             Factory = new Factory(this);
+            Jobs = new Jobs(this, 2);
 
             Title = title;
             WindowState = WindowState.Maximized;
 
             LoadAssets();
+            DebugConsole.Output("Flame", "Loaded Game Assets");
+
             Initialize();
+            DebugConsole.Output("Flame", "Initialized Game");
         }
 
         #region Properties
+        public dynamic AddOns { get; set; }
         public Particles Particles { get; }
         public Tween Tween { get; }
         public Timer Timer { get; }
         public Factory Factory { get; }
+        public Jobs Jobs { get; }
 
         public AssetManager Assets
         {
@@ -123,7 +135,7 @@ namespace Flame.Games
         public void Add(GameThing thing)
         {
             thing.Uid = _uidCounter++;
-            _things.Add(thing);
+            _thingsToAdd.Add(thing);
         }
 
         public virtual void Update()
@@ -139,11 +151,21 @@ namespace Flame.Games
             }
             _things.Clear();
             _things.AddRange(_cleanedThings);
+            _things.AddRange(_thingsToAdd);
+            _thingsToAdd.Clear();
+
+            Jobs.Add(delegate (object o)
+            {
+                return 1;
+            }, delegate (object o)
+            {
+                return o;
+            });
         }
 
         public virtual void Draw()
         {
-            //_things.Sort();
+            _things.Sort();
             foreach(GameThing thing in _things)
             {
                 thing.Draw();

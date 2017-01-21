@@ -125,15 +125,20 @@ namespace Flame
 
         public static bool operator== (GameThing thing1, GameThing thing2)
         {
-            if (thing2 == null || thing1 == null)
-            {
-                return false;
-            }
+            if (Object.Equals(thing1, null) || Object.Equals(thing2, null)) return false;
             return thing1.Uid == thing2.Uid;
         }
 
         public static bool operator !=(GameThing thing1, GameThing thing2)
         {
+            if (Object.Equals(thing1, null) && Object.Equals(thing2, null))
+            {
+                return false;
+            }
+            if (Object.Equals(thing1, null) || Object.Equals(thing2, null))
+            {
+                return true;
+            }
             return thing1.Uid != thing2.Uid;
         }
     }

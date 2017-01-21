@@ -52,8 +52,11 @@
     <Compile Include="AssetManager.cs" />
     <Compile Include="Assets\Texture.cs" />
     <Compile Include="Assets\TextureMap.cs" />
+    <Compile Include="Debug\Commands.cs" />
+    <Compile Include="Debug\DebugConsole.cs" />
     <Compile Include="Games\Game.cs" />
     <Compile Include="Games\Modules\Factory.cs" />
+    <Compile Include="Games\Modules\Jobs.cs" />
     <Compile Include="Games\Modules\Module.cs" />
     <Compile Include="Games\Modules\Particles.cs" />
     <Compile Include="Games\Modules\Timer.cs" />
@@ -71,13 +74,21 @@
     <Compile Include="Sprites\Modules\Body.cs" />
     <Compile Include="Sprites\Modules\Events.cs" />
     <Compile Include="Sprites\Modules\Module.cs" />
+    <Compile Include="Sprites\Modules\Path.cs" />
     <Compile Include="Sprites\Sprite.cs" />
+    <Compile Include="Sprites\Text.cs" />
     <Compile Include="StateMachine.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PathFinding\PathFinderApp.csproj">
+      <Project>{c860269c-831f-44d5-916f-a03bf2da513a}</Project>
+      <Name>PathFinderApp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
