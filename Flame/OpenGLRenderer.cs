@@ -23,7 +23,6 @@ namespace Flame
             Rotation = 0;
             GL.Enable(EnableCap.Blend);
             GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
-
         }
 
         public double Rotation { get; set; }

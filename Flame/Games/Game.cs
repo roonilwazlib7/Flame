@@ -116,6 +116,12 @@ namespace Flame.Games
             base.OnKeyDown(e);
             
         }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Jobs.TerminateThreads();
+        }
         #endregion
 
         private void SetUpGL(double x, double y, double width, double height)

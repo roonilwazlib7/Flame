@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using Flame;
 using Flame.Games;
 using Flame.Sprites;
@@ -21,6 +22,8 @@ namespace Cogad
         public override void LoadAssets()
         {
             Assets.LoadTexture("Assets/Units/unit1.png", "unit1");
+            Assets.LoadFile("Assets/Fonts/impact.json", "impact");
+            Assets.LoadTexture("Assets/Fonts/impact.png", "impact");
             GameGrid.LoadAssets(this);
             Terrain.LoadAssets(this);
             Building.LoadAssets(this);
@@ -44,6 +47,9 @@ namespace Cogad
             Building.Generate(this, "house", 6, 7);
             Building.Generate(this, "barn", 4, 2);
             Building.Generate(this, "barracks", 4, 6);
+
+            TextBox t = new TextBox(this, "impact", "impact", Color.Blue);
+            t.Text = "Hello, World!";
         }
     }
 }

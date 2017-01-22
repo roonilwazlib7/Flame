@@ -130,6 +130,7 @@ namespace Flame.Sprites
         {
             _renderObject = _renderTexture = Game.Assets.GetTexture(textureId);
             _renderRectangle = new Geometry.Rectangle(Position.X, Position.Y, _renderTexture.Width, _renderTexture.Height);
+            TextureMap.Texture = _renderTexture;
             return this;
         }
         #endregion

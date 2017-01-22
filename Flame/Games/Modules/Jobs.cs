@@ -28,6 +28,14 @@ namespace Flame.Games.Modules
             }
         }
 
+        public void TerminateThreads()
+        {
+            foreach(Thread t in _threads)
+            {
+                t.Abort();
+            }
+        }
+
         public void Add(Func<object, object> execution, Func<object,object> callback)
         {
             _jobs.Enqueue(new Job<object,object>(execution, callback));
