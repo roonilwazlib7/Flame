@@ -1,0 +1,27 @@
+﻿[
+
+  {
+    "id": "worker",
+    "moveSpeed": 200,
+    "cost": 
+    {
+      "food":  10
+    }
+  },
+  {
+    "id": "warrior",
+    "moveSpeed":  200
+  },
+  {
+    "id": "archer",
+    "moveSpeed":  200
+  },
+  {
+    "id": "priest",
+    "moveSpeed":  200
+  },
+  {
+    "id": "king",
+    "moveSpeed":  200
+  }
+]

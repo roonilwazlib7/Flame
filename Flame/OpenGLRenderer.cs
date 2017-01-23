@@ -37,7 +37,7 @@ namespace Flame
             double x = sprite.Position.X + sprite.Pivot.X;
             double y = sprite.Position.Y + sprite.Pivot.Y;
             GL.PushMatrix();
-            GL.Translate(x, y, _z);
+            GL.Translate(Math.Round(x), Math.Round(y), _z);
             GL.Rotate(sprite.Rotation.Value, 0, 0, 1);
         }
 

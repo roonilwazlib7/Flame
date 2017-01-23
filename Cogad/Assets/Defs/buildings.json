@@ -1,14 +1,23 @@
 [
-    {
-        "id": "house"
-    },
-    {
-        "id": "castle"
-    },
-    {
-        "id": "barracks"
-    },
-    {
-        "id": "barn"
-    }
+  {
+    "id": "house"
+  },
+  {
+    "id": "castle"
+  },
+  {
+    "id": "barracks"
+  },
+  {
+    "id": "barn"
+  },
+  {
+    "id": "church"
+  },
+  {
+    "id": "tower"
+  },
+  {
+    "id":  "farm"
+  }
 ]

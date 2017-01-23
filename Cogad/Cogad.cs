@@ -14,42 +14,49 @@ namespace Cogad
 {
     class Cogad:Game
     {
+        TextBox _fps;
         public Cogad():base()
         {
             Title = "Cogad";
         }
         public GameGrid GameGrid { get; set; }
+        public TopMenu TopMenu { get; set; }
         public override void LoadAssets()
         {
-            Assets.LoadTexture("Assets/Units/unit1.png", "unit1");
             Assets.LoadFile("Assets/Fonts/impact.json", "impact");
             Assets.LoadTexture("Assets/Fonts/impact.png", "impact");
+            Assets.LoadFile("Assets/Maps/samplemap.txt", "sample-map");
+            TopMenu.LoadAssets(this);
             GameGrid.LoadAssets(this);
             Terrain.LoadAssets(this);
             Building.LoadAssets(this);
+            Unit.LoadAssets(this);
 
-            Building.CreateDefs(this);
+            Unit.CreateDefs(this);
         }
         public override void Initialize()
         {
             base.Initialize();
-            Unit u = new Unit(this, 50, 50);
+            TopMenu = new TopMenu(this);
+
             AddOns = new
             {
-                GameGrid = new GameGrid(this, 64, 64)
+                GameGrid = new GameGrid(this, 64, 64)   
             };
+            GameGrid = AddOns.GameGrid;
             DebugConsole.AddChannel("GameGrid", ConsoleColor.Cyan, ConsoleColor.Black);
-            AddOns.GameGrid.Seed(5, 5, "stone", 2);
-            AddOns.GameGrid.Seed(18, 6, "forest-full", 8);
+
+            Map.Create(Assets.GetFile("sample-map"), this);
+
             AddOns.GameGrid.DebugCells();
+            _fps = new TextBox(this, "impact", "impact", Color.Black);
 
-            Building.Generate(this, "castle", 8, 4);
-            Building.Generate(this, "house", 6, 7);
-            Building.Generate(this, "barn", 4, 2);
-            Building.Generate(this, "barracks", 4, 6);
+        }
 
-            TextBox t = new TextBox(this, "impact", "impact", Color.Blue);
-            t.Text = "Hello, World!";
+        public override void Update()
+        {
+            base.Update();
+            _fps.Text = ((int)(1 / RenderTime) ).ToString();
         }
     }
 }

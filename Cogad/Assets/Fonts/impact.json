@@ -1,6 +1,76 @@
 {
     "torch-texture-atlas": true,
     "textures": {
+        "0": {
+            "name": "0",
+            "clipX": 616.5263671875,
+            "clipY": 0,
+            "clipWidth": 9.650390625,
+            "clipHeight": 27
+        },
+        "1": {
+            "name": "1",
+            "clipX": 536.2734375,
+            "clipY": 0,
+            "clipWidth": 6.85546875,
+            "clipHeight": 27
+        },
+        "2": {
+            "name": "2",
+            "clipX": 543.12890625,
+            "clipY": 0,
+            "clipWidth": 9.03515625,
+            "clipHeight": 27
+        },
+        "3": {
+            "name": "3",
+            "clipX": 552.1640625,
+            "clipY": 0,
+            "clipWidth": 9.544921875,
+            "clipHeight": 27
+        },
+        "4": {
+            "name": "4",
+            "clipX": 561.708984375,
+            "clipY": 0,
+            "clipWidth": 8.9912109375,
+            "clipHeight": 27
+        },
+        "5": {
+            "name": "5",
+            "clipX": 570.7001953125,
+            "clipY": 0,
+            "clipWidth": 9.6591796875,
+            "clipHeight": 27
+        },
+        "6": {
+            "name": "6",
+            "clipX": 580.359375,
+            "clipY": 0,
+            "clipWidth": 9.7470703125,
+            "clipHeight": 27
+        },
+        "7": {
+            "name": "7",
+            "clipX": 590.1064453125,
+            "clipY": 0,
+            "clipWidth": 7.048828125,
+            "clipHeight": 27
+        },
+        "8": {
+            "name": "8",
+            "clipX": 597.1552734375,
+            "clipY": 0,
+            "clipWidth": 9.6240234375,
+            "clipHeight": 27
+        },
+        "9": {
+            "name": "9",
+            "clipX": 606.779296875,
+            "clipY": 0,
+            "clipWidth": 9.7470703125,
+            "clipHeight": 27
+        },
         "a": {
             "name": "a",
             "clipX": 0,
@@ -395,7 +465,7 @@
         },
         "/": {
             "name": "/",
-            "clipX": 480.09375,
+            "clipX": 638.33203125,
             "clipY": 0,
             "clipWidth": 7.119140625,
             "clipHeight": 27
@@ -405,6 +475,97 @@
             "clipX": 487.212890625,
             "clipY": 0,
             "clipWidth": 9.4482421875,
+            "clipHeight": 27
+        },
+        "!": {
+            "name": "!",
+            "clipX": 496.6611328125,
+            "clipY": 0,
+            "clipWidth": 4.8603515625,
+            "clipHeight": 27
+        },
+        "[": {
+            "name": "[",
+            "clipX": 501.521484375,
+            "clipY": 0,
+            "clipWidth": 5.080078125,
+            "clipHeight": 27
+        },
+        "]": {
+            "name": "]",
+            "clipX": 506.6015625,
+            "clipY": 0,
+            "clipWidth": 5.080078125,
+            "clipHeight": 27
+        },
+        "{": {
+            "name": "{",
+            "clipX": 511.681640625,
+            "clipY": 0,
+            "clipWidth": 6.6533203125,
+            "clipHeight": 27
+        },
+        "}": {
+            "name": "}",
+            "clipX": 518.3349609375,
+            "clipY": 0,
+            "clipWidth": 6.6533203125,
+            "clipHeight": 27
+        },
+        "(": {
+            "name": "(",
+            "clipX": 524.98828125,
+            "clipY": 0,
+            "clipWidth": 5.642578125,
+            "clipHeight": 27
+        },
+        ")": {
+            "name": ")",
+            "clipX": 530.630859375,
+            "clipY": 0,
+            "clipWidth": 5.642578125,
+            "clipHeight": 27
+        },
+        "|": {
+            "name": "|",
+            "clipX": 626.1767578125,
+            "clipY": 0,
+            "clipWidth": 4.8779296875,
+            "clipHeight": 27
+        },
+        ":": {
+            "name": ":",
+            "clipX": 631.0546875,
+            "clipY": 0,
+            "clipWidth": 3.638671875,
+            "clipHeight": 27
+        },
+        ";": {
+            "name": ";",
+            "clipX": 634.693359375,
+            "clipY": 0,
+            "clipWidth": 3.638671875,
+            "clipHeight": 27
+        },
+        "*": {
+            "name": "*",
+            "clipX": 645.451171875,
+            "clipY": 0,
+            "clipWidth": 5.0537109375,
+            "clipHeight": 27
+        },
+        "-": {
+            "name": "-",
+            "clipX": 650.5048828125,
+            "clipY": 0,
+            "clipWidth": 5.2998046875,
+            "clipHeight": 27
+        },
+        "+": {
+            "name": "+",
+            "clipX": 655.8046875,
+            "clipY": 0,
+            "clipWidth": 9.59765625,
             "clipHeight": 27
         }
     }

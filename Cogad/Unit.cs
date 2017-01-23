@@ -8,14 +8,21 @@ using Flame;
 using Flame.Sprites;
 using Flame.Games;
 using Flame.Geometry;
+using Newtonsoft.Json;
 
 namespace Cogad
 {
     class Unit: Sprite
     {
+        TextBox _debugText;
+        public static Dictionary<string, UnitDef> Defs = new Dictionary<string, UnitDef>();
+
+        #region Attributes (defined in JSON)
+        public int MoveSpeed { get; set; }
+        #endregion
+
         public Unit(Game game, int x, int y): base(game, x, y)
         {
-            BindToTexture("unit1");
             State.AddState("idle", new IdleState());
             State.AddState("selected", new SelectedState());
             State.AddState("moving", new MoveState());
@@ -24,13 +31,55 @@ namespace Cogad
 
             On("Click", OnClick);
             On("ClickAway", OnClickAway);
-            On("ArrivedAtDestination", OnArrivedAtDestination);        
+            On("ArrivedAtDestination", OnArrivedAtDestination);
+
+            _debugText = new TextBox(Game, "impact", "impact", System.Drawing.Color.Black);
+            _debugText.Text = "Unit";
+            
 
             LayerIndex = 5;
         }
+
+        public static void LoadAssets(Game game)
+        {
+            game.Assets.LoadFile("Assets/Defs/units.json", "units");
+            game.Assets.LoadTexture("Assets/Units/worker.png", "worker");
+            game.Assets.LoadTexture("Assets/Units/warrior.png", "warrior");
+            game.Assets.LoadTexture("Assets/Units/archer.png", "archer");
+            game.Assets.LoadTexture("Assets/Units/priest.png", "priest");
+            game.Assets.LoadTexture("Assets/Units/king.png", "king");
+        }
+
+        public static void CreateDefs(Game game)
+        {
+            UnitDef[] defs = JsonConvert.DeserializeObject<UnitDef[]>(game.Assets.GetFile("units"));
+
+            foreach (UnitDef def in defs)
+            {
+                Defs.Add(def.Id, def);
+            }
+        }
+
+        public static void Generate(Game game, string id, int column, int row)
+        {
+            UnitDef def = Defs[id];
+            Vector v = game.AddOns.GameGrid.GetPositionFromCell(column, row);
+            Unit b = new Unit(game, (int)v.X, (int)v.Y);
+
+            b.MoveSpeed = def.MoveSpeed;
+
+            b.Path.MoveSpeed = b.MoveSpeed;
+
+            b.BindToTexture(id);
+            b.Position.Y -= (b.Rectangle.Height - game.AddOns.GameGrid.CellSize);
+        }
+
         public override void Update()
         {
             base.Update();
+            _debugText.X = Position.X;
+            _debugText.Y = Position.Y + Rectangle.Height * 1.2;
+            _debugText.Text = State.CurrentState.Name + "\n" + String.Format("{0},{1}", (int)Position.X, (int)Position.Y);
         }
         public override void Draw()
         {
@@ -53,7 +102,8 @@ namespace Cogad
         }
     }
 
-    class IdleState: State<Sprite>
+    #region States
+    class IdleState : State<Sprite>
     {
         public IdleState():base()
         {
@@ -126,4 +176,14 @@ namespace Cogad
         {
         }
     }
+    #endregion
+
+    #region Defs
+    class UnitDef
+    {
+        public string Id { get; set; }
+        public int MoveSpeed { get; set; }
+        public Cost Cost { get; set; }
+    }
+    #endregion
 }

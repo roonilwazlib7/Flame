@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Flame;
 using Flame.Sprites;
 using Flame.Games;
 using Flame.Geometry;
@@ -13,22 +14,26 @@ namespace Cogad
     class Building: Sprite
     {
         public static Dictionary<string, BuildingDef> Defs = new Dictionary<string, BuildingDef>();
+        TextBox _debugText;
 
         public Building(Game game, int x, int y, int widthOverlap = 0, int heightOverlap = 0): base(game, x - widthOverlap, y - heightOverlap)
         {
-
+            State.AddState("idle", new BuildingIdleState());
+            State.Switch("idle");
             game.Add(this);
-
+            _debugText = new TextBox(Game, "impact", "impact", System.Drawing.Color.Black);
             LayerIndex = 5;
         }
 
         public static void LoadAssets(Game game)
         {
-            game.Assets.LoadTexture("Assets/Buildings/castle.png", "castle");
-            game.Assets.LoadTexture("Assets/Buildings/house.png", "house");
-            game.Assets.LoadTexture("Assets/Buildings/barn.png", "barn");
-            game.Assets.LoadTexture("Assets/Buildings/barracks.png", "barracks");
             game.Assets.LoadFile("Assets/Defs/buildings.json", "buildings");
+            Building.CreateDefs(game);
+
+            foreach (KeyValuePair<string,BuildingDef> def in Defs)
+            {
+                game.Assets.LoadTexture("Assets/Buildings/" + def.Value.Id + ".png", def.Value.Id);
+            }
         }
 
         public static void CreateDefs(Game game)
@@ -51,10 +56,25 @@ namespace Cogad
 
             b.Position.Y -= (b.Rectangle.Height - game.AddOns.GameGrid.CellSize);
         }
+
+        public override void Update()
+        {
+            base.Update();
+            _debugText.X = Position.X;
+            _debugText.Y = Rectangle.Y;
+            _debugText.Text = State.CurrentState.Name;
+        }
     }
 
     class BuildingDef
     {
         public string Id { get; set; }
     }
+
+    #region States
+    class BuildingIdleState: State<Sprite>
+    {
+
+    }
+    #endregion
 }

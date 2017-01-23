@@ -34,6 +34,7 @@ namespace Flame
         {
             _states.Add(id, state);
             state.StateMachine = this;
+            state.Name = id;
         }
 
         public void Switch(string id)
@@ -64,6 +65,7 @@ namespace Flame
         {
             _messageListeners = new Dictionary<string, List<Func<Message, Message>>>();
         }
+        public string Name { get; set; }
         public StateMachine<T> StateMachine { get; set; }
         public virtual void Start(T controlObject) { }
         public virtual void Update(T controlObject) { }

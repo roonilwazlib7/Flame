@@ -1,0 +1,9 @@
+﻿# This is a comment line
+# avaliable commands:
+# put [thingType] [thingId] [row] [column]
+# seed [building] [row] [column]
+
+put building farm 5 5
+put unit worker 2 2
+seed stone 3 3
+seed forest-full 1 1

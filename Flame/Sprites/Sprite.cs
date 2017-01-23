@@ -87,6 +87,15 @@ namespace Flame.Sprites
             else if (_renderObject is Texture)
             {
                 Geometry.Rectangle drawRec = new Geometry.Rectangle(0, 0, Rectangle.Width, Rectangle.Height);
+
+                Geometry.Rectangle viewRec = new Geometry.Rectangle(0, 0, Game.ClientSize.Width, Game.ClientSize.Height);
+
+                if (Position.X < 0 || Position.X > viewRec.Width || Position.Y < 0 || Position.Y > viewRec.Height)
+                {
+                    _renderer.PostSpriteDraw(this);
+                    return;
+                }
+
                 for (int i = 0; i < Repeat.X + 1; i++)
                 {
                     for (int j = 0; j < Repeat.Y + 1; j++)

@@ -76,5 +76,6 @@ namespace Flame.Geometry
                 return new Vector(X + HalfWidth, Y + HalfHeight);
             }
         }
+
     }
 }

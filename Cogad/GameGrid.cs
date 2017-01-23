@@ -49,15 +49,17 @@ namespace Cogad
 
         public Cell GetCellFromPosition(Vector position)
         {
+            Cogad c = Game as Cogad;
             int column = (int)Math.Round(position.X / CellSize);
-            int row = (int)Math.Round(position.Y / CellSize);
+            int row = (int)Math.Round((position.Y + c.TopMenu.Rectangle.Height) / CellSize);
             return _cellMap[column,row];
         }
 
         public Vector GetPositionFromCell(int column, int row)
         {
+            Cogad c = Game as Cogad;
             double x = column * CellSize;
-            double y = row * CellSize;
+            double y = row * CellSize + c.TopMenu.Rectangle.Height;
 
             return new Vector(x, y);
         }
@@ -108,13 +110,14 @@ namespace Cogad
     class Cell : Sprite
     {
         private GameGrid _grid;
-        public Cell(GameGrid grid, int column, int row): base(grid.Game, column * grid.CellSize, row * grid.CellSize)
+        public Cell(GameGrid grid, int column, int row): base(grid.Game, column * grid.CellSize, (row * grid.CellSize) + (int)(grid.Game as Cogad).TopMenu.Rectangle.Height)
         {
             _grid = grid;
             BindToTexture("cell");
             Rectangle.Width = grid.CellSize;
             Rectangle.Height = grid.CellSize;
-            Terrain = new Terrain(grid.Game, column * 128, row * 128);
+            Cogad cogad = Game as Cogad;
+            Terrain = new Terrain(grid.Game, (int)Position.X, (int)Position.Y);
             Opacity.Value = 0;  
         }
         public Terrain  Terrain { get; }
