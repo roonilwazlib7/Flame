@@ -45,6 +45,7 @@ namespace Cogad
             };
             GameGrid = AddOns.GameGrid;
             DebugConsole.AddChannel("GameGrid", ConsoleColor.Cyan, ConsoleColor.Black);
+            DebugConsole.AddChannel("Map", ConsoleColor.Gray, ConsoleColor.Black);
 
             Map.Create(Assets.GetFile("sample-map"), this);
 

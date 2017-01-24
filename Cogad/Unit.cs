@@ -16,6 +16,7 @@ namespace Cogad
     {
         TextBox _debugText;
         public static Dictionary<string, UnitDef> Defs = new Dictionary<string, UnitDef>();
+        public static List<Unit> SelectedUnits = new List<Unit>();
 
         #region Attributes (defined in JSON)
         public int MoveSpeed { get; set; }
@@ -146,6 +147,7 @@ namespace Cogad
             controlObject.Game.Tween.CreateTween(controlObject.Opacity, 1)
                 .From(new SpriteOpacity(0))
                 .To(new SpriteOpacity(1));
+            Unit.SelectedUnits.Add(ControlObjectAs<Unit>());
         }
         public override void Update(Sprite controlObject)
         {
@@ -153,6 +155,7 @@ namespace Cogad
         }
         public override void End(Sprite controlObject)
         {
+            Unit.SelectedUnits.Remove(ControlObjectAs<Unit>());
         }
     }
 
@@ -164,6 +167,24 @@ namespace Cogad
                 StateMachine.Switch("idle");
                 return m;
             });
+        }
+        public override void Start(Sprite controlObject)
+        {
+        }
+        public override void Update(Sprite controlObject)
+        {
+
+        }
+        public override void End(Sprite controlObject)
+        {
+        }
+    }
+
+    class GatherState: State<Sprite>
+    {
+        public GatherState():base()
+        {
+
         }
         public override void Start(Sprite controlObject)
         {

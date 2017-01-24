@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Flame.Games;
+using Flame.Debug;
 
 namespace Cogad
 {
@@ -13,6 +14,7 @@ namespace Cogad
         public static void Create(string map, Game game)
         {
             string[] lines = map.Split('\n');
+            DebugConsole.Output("Map", "Creating map...");
 
             foreach(string line in lines)
             {
@@ -33,6 +35,9 @@ namespace Cogad
                     case "put":
                         CommandPut(commandParts, game);
                         break;
+                    case "seed":
+                        CommandSeed(commandParts, game);
+                        break;
                 }
             }
         }
@@ -46,6 +51,8 @@ namespace Cogad
 
             Cogad cogad = game as Cogad;
 
+            DebugConsole.Output("Map", string.Format("Putting {0} at {1},{2}", thingId, column, row));
+
             switch(thingType)
             {
                 case "building":
@@ -55,6 +62,20 @@ namespace Cogad
                     Unit.Generate(game, thingId, column, row);
                     break;
             }
+        }
+
+        public static void CommandSeed(List<string> parts, Game game)
+        {
+            string terrianId = parts[0];
+            int column = int.Parse(parts[1]);
+            int row = int.Parse(parts[2]);
+            int radius = int.Parse(parts[3]);
+
+            Cogad cogad = game as Cogad;
+
+            DebugConsole.Output("Map", string.Format("Seeding {0} at {1},{2}", terrianId, column, row));
+
+            cogad.GameGrid.Seed(column, row, terrianId, radius);
         }
     }
 }

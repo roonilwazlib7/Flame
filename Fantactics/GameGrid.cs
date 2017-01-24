@@ -8,7 +8,7 @@ using Flame.Games;
 using Flame.Geometry;
 using Flame.Debug;
 
-namespace Cogad
+namespace Fantactics
 {
     class GameGrid
     {
@@ -16,7 +16,7 @@ namespace Cogad
         public GameGrid(Game game, int columns, int rows)
         {
             Game = game;
-            CellSize = 128;
+            CellSize = 64;
             Columns = columns;
             Rows = rows;
 
@@ -49,17 +49,15 @@ namespace Cogad
 
         public Cell GetCellFromPosition(Vector position)
         {
-            Cogad c = Game as Cogad;
             int column = (int)Math.Round(position.X / CellSize);
-            int row = (int)Math.Round((position.Y + c.TopMenu.Rectangle.Height) / CellSize);
+            int row = (int)Math.Round(position.Y / CellSize);
             return _cellMap[column,row];
         }
 
         public Vector GetPositionFromCell(int column, int row)
         {
-            Cogad c = Game as Cogad;
             double x = column * CellSize;
-            double y = row * CellSize + c.TopMenu.Rectangle.Height;
+            double y = row * CellSize;
 
             return new Vector(x, y);
         }
@@ -84,7 +82,7 @@ namespace Cogad
                     {
                         continue;
                     }
-                    GetCell(i, j).Terrain.BindToTexture(seedId);
+                    //GetCell(i, j).Terrain.BindToTexture(seedId);
                 }
             }
         }
@@ -109,16 +107,16 @@ namespace Cogad
     class Cell : Sprite
     {
         private GameGrid _grid;
-        public Cell(GameGrid grid, int column, int row): base(grid.Game, column * grid.CellSize, (row * grid.CellSize) + (int)(grid.Game as Cogad).TopMenu.Rectangle.Height)
+        public Cell(GameGrid grid, int column, int row): base(grid.Game, column * grid.CellSize, (row * grid.CellSize))
         {
             _grid = grid;
             BindToTexture("cell");
             Rectangle.Width = grid.CellSize;
             Rectangle.Height = grid.CellSize;
-            Cogad cogad = Game as Cogad;
-            Terrain = new Terrain(grid.Game, (int)Position.X, (int)Position.Y);
-            Opacity.Value = 0;  
+
+            //Terrain = new Terrain(grid.Game, (int)Position.X, (int)Position.Y);
+            Opacity.Value = 1;  
         }
-        public Terrain  Terrain { get; }
+        //public Terrain  Terrain { get; }
     }
 }

@@ -70,6 +70,11 @@ namespace Flame
         public virtual void Start(T controlObject) { }
         public virtual void Update(T controlObject) { }
         public virtual void End(T controlObject) { }
+        public U ControlObjectAs<U>()
+        {
+            object boxed = StateMachine.ControlObject;
+            return (U)boxed;
+        }
 
         public void On(string messageKey, Func<Message, Message> delagte)
         {

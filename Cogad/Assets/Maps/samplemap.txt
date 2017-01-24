@@ -1,9 +1,11 @@
 ﻿# This is a comment line
 # avaliable commands:
 # put [thingType] [thingId] [row] [column]
-# seed [building] [row] [column]
+# seed [terrain] [row] [column] [radius]
 
 put building farm 5 5
+put building castle 6 4
 put unit worker 2 2
-seed stone 3 3
-seed forest-full 1 1
+seed forest-full 1 1 2
+seed stone 6 2 1
+seed gold 8 2 1 
