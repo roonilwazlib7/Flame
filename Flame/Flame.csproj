@@ -58,6 +58,7 @@
     <Compile Include="Debug\Commands.cs" />
     <Compile Include="Debug\DebugConsole.cs" />
     <Compile Include="Games\Game.cs" />
+    <Compile Include="Games\Modules\Caster.cs" />
     <Compile Include="Games\Modules\Factory.cs" />
     <Compile Include="Games\Modules\Jobs.cs" />
     <Compile Include="Games\Modules\Module.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Games\Modules\Tween.cs" />
     <Compile Include="GameThing.cs" />
     <Compile Include="Geometry\Circle.cs" />
+    <Compile Include="Geometry\Line.cs" />
     <Compile Include="Geometry\Rectangle.cs" />
     <Compile Include="Geometry\Shape.cs" />
     <Compile Include="Geometry\Triangle.cs" />

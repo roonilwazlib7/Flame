@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Flame;
 using Flame.Games;
 using Flame.Debug;
+using Flame.Geometry;
 
 namespace Fantactics
 {
@@ -31,6 +32,17 @@ namespace Fantactics
             DebugConsole.AddChannel("Fantactics", ConsoleColor.Black, ConsoleColor.DarkCyan);
 
             GameGrid = new GameGrid(this, 64, 64);
+
+            Caster.CastRay(new Line(0, 0, 7, 7), delegate (object o)
+               {
+                   DebugConsole.Output("Flame", "Finished ray cast");
+                   return o;
+               });
+        }
+
+        public override void Draw()
+        {
+            base.Draw();
         }
     }
 }

@@ -78,9 +78,18 @@ namespace Flame
             GL.End();
         }
 
-        public void DrawRectangle()
+        public void DrawRectangle(Geometry.Rectangle rectangle, Color color)
         {
+            GL.Begin(PrimitiveType.Quads);
 
+            GL.Color4(color);
+
+            GL.Vertex2(rectangle.X, rectangle.Y);
+            GL.Vertex2(rectangle.X + rectangle.Width, rectangle.Y);
+            GL.Vertex2(rectangle.X + rectangle.Width, rectangle.Y + rectangle.Height);
+            GL.Vertex2(rectangle.X, rectangle.Y + rectangle.Height);
+
+            GL.End();
         }
 
         public void DrawLine(Geometry.Vector start, Geometry.Vector end, Color color, float lineWidth = 1)

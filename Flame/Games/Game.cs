@@ -39,6 +39,7 @@ namespace Flame.Games
             Tween = new Tween(this);
             Timer = new Timer(this);
             Factory = new Factory(this);
+            Caster = new Caster(this);
             Jobs = new Jobs(this, 2);
 
             Title = title;
@@ -58,6 +59,7 @@ namespace Flame.Games
         public Timer Timer { get; }
         public Factory Factory { get; }
         public Jobs Jobs { get; }
+        public Caster Caster { get; }
 
         public AssetManager Assets
         {
