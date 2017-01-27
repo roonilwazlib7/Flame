@@ -41,6 +41,7 @@ namespace Fantactics
         public static void LoadAssets(Game game)
         {
             game.Assets.LoadTexture("Assets/cell.png", "cell");
+            game.Assets.LoadTexture("Assets/Terrain/grass.png", "grass");
         }
 
         public Cell GetCell(int column, int row)
@@ -87,6 +88,26 @@ namespace Fantactics
                 }
             }
         }
+        public List<Cell> GetCellsFromRadius(int column, int row, int radius)
+        {
+            List<Cell> cells = new List<Cell>();
+            int startColumn = column - radius;
+            int startRow = row - radius;
+
+            for (int i = startColumn; i < column + radius + 1; i++)
+            {
+                for (int j = startRow; j < row + radius + 1; j++)
+                {
+                    if (i < 0 || i >= Columns || j < 0 || j >= Rows)
+                    {
+                        continue;
+                    }
+                    cells.Add(GetCell(i, j));
+                }
+            }
+
+            return cells;
+        }
         public byte[,] ToBytes()
         {
             int l1 = _cellMap.GetLength(0);
@@ -108,6 +129,8 @@ namespace Fantactics
     class Cell : Sprite
     {
         private GameGrid _grid;
+        public int Column { get; }
+        public int Row { get; }
         public Cell(GameGrid grid, int column, int row): base(grid.Game, column * grid.CellSize, (row * grid.CellSize))
         {
             _grid = grid;
@@ -115,10 +138,21 @@ namespace Fantactics
             Rectangle.Width = grid.CellSize;
             Rectangle.Height = grid.CellSize;
 
-            //Terrain = new Terrain(grid.Game, (int)Position.X, (int)Position.Y);
+            Terrain = new Terrain(grid.Game, (int)Position.X, (int)Position.Y);
             Opacity.Value = 1;
-  
+            Column = column;
+            Row = row;
+
+            Game.Add(Terrain);
         }
-        //public Terrain  Terrain { get; }
+        public Terrain  Terrain { get; }
+    }
+
+    class Terrain : Sprite
+    {
+        public Terrain(Game game, int x, int y):base(game, x, y)
+        {
+            BindToTexture("grass");
+        }
     }
 }

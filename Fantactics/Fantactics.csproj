@@ -94,7 +94,6 @@
     <Folder Include="Assets\Terrain\" />
     <Folder Include="Assets\Units\" />
     <Folder Include="Terrain\" />
-    <Folder Include="Units\Goblin\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
