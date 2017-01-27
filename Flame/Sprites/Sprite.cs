@@ -16,10 +16,19 @@ namespace Flame.Sprites
         private Geometry.Rectangle _renderRectangle;
         private Texture _renderTexture;
         private OpenGLRenderer _renderer;
+        private Sprite _parent;
+        private Vector _position;
+        #region Events
+        public event FlameMessageHandler OnClick;
+        public event FlameMessageHandler OnMouseEnter;
+        public event FlameMessageHandler OnMouseLeave;
+        public event FlameMessageHandler OnMouseDown;
+        public event FlameMessageHandler OnClickAway;
+        #endregion
 
         public Sprite(Game game, int x, int y) : base()
         {
-            Position = new Vector(x, y);
+            _position = new Vector(x, y);
             Pivot = new Vector(0, 0);
             Repeat = new Vector(0, 0);
             Color = Color.White;
@@ -37,8 +46,30 @@ namespace Flame.Sprites
             _renderer = game.Renderer;
         }
 
+        #region Event Triggers
+        public void TriggerClick(Message m)
+        {
+            OnClick?.Invoke(this, m);
+        }
+        public void TriggerMouseEnter(Message m)
+        {
+            OnMouseEnter?.Invoke(this, m);
+        }
+        public void TriggerMouseLeave(Message m)
+        {
+            OnMouseLeave?.Invoke(this, m);
+        }
+        public void TriggerMouseDown(Message m)
+        {
+            OnMouseDown?.Invoke(this, m);
+        }
+        public void TriggerClickAway(Message m)
+        {
+            OnClickAway?.Invoke(this, m);
+        }
+        #endregion
+
         #region Properties
-        public Vector Position { get; set; }
         public Vector Pivot { get; set; }
         public Vector Repeat { get; set; }
         public Color Color { get; set; }
@@ -49,6 +80,35 @@ namespace Flame.Sprites
         public StateMachine<Sprite> State { get; set; }
         public SpriteRotation Rotation { get; set; }
         public SpriteOpacity Opacity { get; set; }
+        public Sprite Parent
+        {
+            get
+            {
+                return _parent;
+            }
+            set
+            {
+                _parent = value;
+            }
+        }
+        public Vector Position
+        {
+            set
+            {
+                _position = value;
+            }
+            get
+            {
+                if (_parent != null)
+                {
+                    return _parent.Position + _position;
+                }
+                else
+                {
+                    return _position;
+                }
+            }
+        }
         public Geometry.Rectangle Rectangle
         {
             get
@@ -150,6 +210,11 @@ namespace Flame.Sprites
             Pivot.X = _renderRectangle.HalfWidth;
             Pivot.Y = _renderRectangle.HalfHeight;
             return this;
+        }
+
+        public void Add(Sprite sp)
+        {
+            sp.Parent = this;
         }
         #endregion
     }

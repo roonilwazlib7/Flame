@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Flame
 {
+    public delegate void FlameMessageHandler(object sender, Message m);
+
     public class Message
     {
         private object _sender;

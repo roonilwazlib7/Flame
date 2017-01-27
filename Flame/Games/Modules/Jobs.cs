@@ -36,7 +36,7 @@ namespace Flame.Games.Modules
             }
         }
 
-        public void Add(Func<object, object> execution, Func<object,object> callback)
+        public void Add(Func<object,object> execution, Func<object,object> callback)
         {
             _jobs.Enqueue(new Job<object,object>(execution, callback));
         }

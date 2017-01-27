@@ -1,0 +1,21 @@
+# Pound signs are comments
+
+# avaliable commands:
+
+NAME # names the ability
+ICON # image that represents the ability
+IMAGE # image that is shown when effect is used
+AFFECTS # determines who is affected by the ability
+        # options:
+        SELF # affects the unit using the ability
+        TEAM # affects all units on team
+        ENEMY # affects enemy units
+ATTACK # for passive abilities, change to attack
+DEFENSE # for passive abilities, change to defense
+SPEED # for passive abilities, change to speed
+HEALTH # change health
+AREA # for abilities over an area, determines effect radius
+LASTS # how many turns the ability's effects last
+COOLDOWN # how many turns before the ability can be used again
+ENABLE # grant an ability
+DISABLE # remove an ability

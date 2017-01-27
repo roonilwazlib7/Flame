@@ -1,0 +1,11 @@
+{
+    "Name": "Bruiser",
+    "UnitType": "Goblin",
+    "BuildCost": 1,
+
+    "Attack": 3,
+    "Defense": 1,
+
+    "Speed": 2,
+
+}

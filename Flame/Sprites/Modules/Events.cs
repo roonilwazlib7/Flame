@@ -22,31 +22,40 @@ namespace Flame.Sprites.Modules
             bool mouseInRec = MouseInRec();
             if (mouseInRec && !_mouseWasInRec)
             {
-                Sprite.Emit("MouseEnter", new Message(Sprite));
+                Message m = new Message(Sprite);
+                Sprite.Emit("MouseEnter", m);
+                Sprite.TriggerMouseEnter(m);
             }
             if (!mouseInRec && _mouseWasInRec)
             {
-                Sprite.Emit("MouseLeave", new Message(Sprite));
+                Message m = new Message(Sprite);
+                Sprite.Emit("MouseLeave", m);
+                Sprite.TriggerMouseLeave(m);
             }
             if (mouse.LeftButton == ButtonState.Released  )
             {
                 if (mouseInRec && _oldMouse.LeftButton == ButtonState.Pressed)
                 {
                     Sprite.Emit("Click", new Message(Sprite));
+                    Sprite.TriggerClick(new Message(Sprite));
                 }
             }
             if (mouse.LeftButton == ButtonState.Pressed)
             {
                 if( mouseInRec && _oldMouse.LeftButton == ButtonState.Released)
                 {
-                    Sprite.Emit("MouseDown", new Message(Sprite));
+                    Message m = new Message(Sprite);
+                    Sprite.Emit("MouseDown", m);
+                    Sprite.TriggerMouseDown(m);
                 }
             }
             if (mouse.LeftButton == ButtonState.Released)
             {
                 if (!mouseInRec && _oldMouse.LeftButton == ButtonState.Pressed)
                 {
-                    Sprite.Emit("ClickAway", new Message(Sprite));
+                    Message m = new Message(Sprite);
+                    Sprite.Emit("ClickAway", m);
+                    Sprite.TriggerClickAway(m);
                 }
             }
 

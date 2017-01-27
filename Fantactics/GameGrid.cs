@@ -7,6 +7,7 @@ using Flame.Sprites;
 using Flame.Games;
 using Flame.Geometry;
 using Flame.Debug;
+using Flame;
 
 namespace Fantactics
 {
@@ -115,7 +116,8 @@ namespace Fantactics
             Rectangle.Height = grid.CellSize;
 
             //Terrain = new Terrain(grid.Game, (int)Position.X, (int)Position.Y);
-            Opacity.Value = 1;  
+            Opacity.Value = 1;
+  
         }
         //public Terrain  Terrain { get; }
     }

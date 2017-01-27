@@ -1,0 +1,11 @@
+{
+    "Name": "GrandWizard",
+    "UnitType": "Wizard",
+    "BuildCost": 5,
+
+    "Attack": 0,
+    "Defense": 0,
+    "Speed": 1,
+
+    "Abilities": ["Teleport", "MindControl"],
+}
