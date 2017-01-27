@@ -130,6 +130,12 @@ namespace Flame.Sprites
             }
         }
 
+        public void SetPosition(double x, double y)
+        {
+            X = x;
+            Y = y;
+        }
+
         public double Width { get; set; }
         public double height { get; set; }
     }

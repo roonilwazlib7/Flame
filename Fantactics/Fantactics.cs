@@ -24,6 +24,9 @@ namespace Fantactics
             // set up our debug channels
             DebugConsole.AddChannel("Fantactics", ConsoleColor.DarkCyan, ConsoleColor.Black);
 
+            Assets.LoadTexture("Assets/Fonts/impact-18.png", "impact-18");
+            Assets.LoadFile("Assets/Fonts/impact-18.json", "impact-18");
+
             GameGrid.LoadAssets(this);
             Unit.Load(this);
             Ability.Load(this);
@@ -41,8 +44,6 @@ namespace Fantactics
             Unit u3 = Unit.Create("TreeScout", this, 15, 10);
             Unit u4 = Unit.Create("Knight", this, 20, 8);
             Unit u5 = Unit.Create("Warlock", this, 14, 0);
-
-            u5.Add(Unit.Create("Bruiser", this, 0, 0));
         }
 
         public override void Draw()

@@ -1,0 +1,411 @@
+{
+    "torch-texture-atlas": true,
+    "textures": {
+        "a": {
+            "name": "a",
+            "clipX": 0,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "b": {
+            "name": "b",
+            "clipX": 10.8017578125,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "c": {
+            "name": "c",
+            "clipX": 21.603515625,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "d": {
+            "name": "d",
+            "clipX": 32.4052734375,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "e": {
+            "name": "e",
+            "clipX": 43.20703125,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "f": {
+            "name": "f",
+            "clipX": 54.0087890625,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "g": {
+            "name": "g",
+            "clipX": 64.810546875,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "h": {
+            "name": "h",
+            "clipX": 75.6123046875,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "i": {
+            "name": "i",
+            "clipX": 86.4140625,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "j": {
+            "name": "j",
+            "clipX": 97.2158203125,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "k": {
+            "name": "k",
+            "clipX": 108.017578125,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "l": {
+            "name": "l",
+            "clipX": 118.8193359375,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "m": {
+            "name": "m",
+            "clipX": 129.62109375,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "n": {
+            "name": "n",
+            "clipX": 140.4228515625,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "o": {
+            "name": "o",
+            "clipX": 151.224609375,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "p": {
+            "name": "p",
+            "clipX": 162.0263671875,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "q": {
+            "name": "q",
+            "clipX": 172.828125,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "r": {
+            "name": "r",
+            "clipX": 183.6298828125,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "s": {
+            "name": "s",
+            "clipX": 194.431640625,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "t": {
+            "name": "t",
+            "clipX": 205.2333984375,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "u": {
+            "name": "u",
+            "clipX": 216.03515625,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "v": {
+            "name": "v",
+            "clipX": 226.8369140625,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "w": {
+            "name": "w",
+            "clipX": 237.638671875,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "x": {
+            "name": "x",
+            "clipX": 248.4404296875,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "y": {
+            "name": "y",
+            "clipX": 259.2421875,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "z": {
+            "name": "z",
+            "clipX": 270.0439453125,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "A": {
+            "name": "A",
+            "clipX": 280.845703125,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "B": {
+            "name": "B",
+            "clipX": 291.6474609375,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "C": {
+            "name": "C",
+            "clipX": 302.44921875,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "D": {
+            "name": "D",
+            "clipX": 313.2509765625,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "E": {
+            "name": "E",
+            "clipX": 324.052734375,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "F": {
+            "name": "F",
+            "clipX": 334.8544921875,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "G": {
+            "name": "G",
+            "clipX": 345.65625,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "H": {
+            "name": "H",
+            "clipX": 356.4580078125,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "I": {
+            "name": "I",
+            "clipX": 367.259765625,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "J": {
+            "name": "J",
+            "clipX": 378.0615234375,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "K": {
+            "name": "K",
+            "clipX": 388.86328125,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "L": {
+            "name": "L",
+            "clipX": 399.6650390625,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "M": {
+            "name": "M",
+            "clipX": 410.466796875,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "N": {
+            "name": "N",
+            "clipX": 421.2685546875,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "O": {
+            "name": "O",
+            "clipX": 432.0703125,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "P": {
+            "name": "P",
+            "clipX": 442.8720703125,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "Q": {
+            "name": "Q",
+            "clipX": 453.673828125,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "R": {
+            "name": "R",
+            "clipX": 464.4755859375,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "S": {
+            "name": "S",
+            "clipX": 475.27734375,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "T": {
+            "name": "T",
+            "clipX": 486.0791015625,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "U": {
+            "name": "U",
+            "clipX": 496.880859375,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "V": {
+            "name": "V",
+            "clipX": 507.6826171875,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "W": {
+            "name": "W",
+            "clipX": 518.484375,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "X": {
+            "name": "X",
+            "clipX": 529.2861328125,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "Y": {
+            "name": "Y",
+            "clipX": 540.087890625,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "Z": {
+            "name": "Z",
+            "clipX": 550.8896484375,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        ".": {
+            "name": ".",
+            "clipX": 561.69140625,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        ",": {
+            "name": ",",
+            "clipX": 572.4931640625,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "<": {
+            "name": "<",
+            "clipX": 583.294921875,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        ">": {
+            "name": ">",
+            "clipX": 594.0966796875,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "/": {
+            "name": "/",
+            "clipX": 604.8984375,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        },
+        "?": {
+            "name": "?",
+            "clipX": 615.7001953125,
+            "clipY": 0,
+            "clipWidth": 10.8017578125,
+            "clipHeight": 27
+        }
+    }
+}

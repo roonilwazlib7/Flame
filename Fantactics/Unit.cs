@@ -47,6 +47,8 @@ namespace Fantactics
             {
                 def.MainImage = "unit-default";
             }
+
+            if (def.Speed == 0) def.Speed = 1;
         }
 
         public string Name { get; set; }
@@ -56,30 +58,49 @@ namespace Fantactics
         public int Defense { get; set; }
         public int Speed { get; set; }
 
+        private TextBox _attackText;
+        private TextBox _defenseText;
+
         public static Unit Create(string name, Game game, int column, int row)
         {
-            Unit u = new Unit(game);
-            UnitDef def = Defs[name];
-            Vector position = (game as Fantactics).GameGrid.GetPositionFromCell(column, row);
-
-            u.Name = def.Name;
-            u.UnitType = def.UnitType;
-            u.BuildCost = def.BuildCost;
-            u.Attack = def.Attack;
-            u.Defense = def.Defense;
-            u.Speed = def.Speed;
-
-            u.Position.Set(position.X, position.Y);
-            u.BindToTexture(def.MainImage);
-            
-
-            game.Add(u);
-
+            Unit u = new Unit(game, Defs[name], column, row);
+            DebugConsole.Output("Fantactics", String.Format("Created Unit: {0} at {1},{2}. A:{3} D:{4} S:{5}", name, column, row, u.Attack, u.Defense, u.Speed));
             return u;
         }
-        public Unit(Game game):base(game, 0, 0)
+        public Unit(Game game, UnitDef def, int column, int row):base(game, 0, 0)
         {
+            Vector position = (game as Fantactics).GameGrid.GetPositionFromCell(column, row);
 
+            Name = def.Name;
+            UnitType = def.UnitType;
+            BuildCost = def.BuildCost;
+            Attack = def.Attack;
+            Defense = def.Defense;
+            Speed = def.Speed;
+
+            Position.Set(position.X, position.Y);
+            BindToTexture(def.MainImage);
+
+            _attackText = new TextBox(Game, "impact-18", "impact-18", System.Drawing.Color.White);
+            _defenseText = new TextBox(Game, "impact-18", "impact-18", System.Drawing.Color.White);
+
+            /*
+             *             _debugText = new TextBox(Game, "impact", "impact", System.Drawing.Color.Black);
+                            _debugText.Text = "Unit";
+             */
+
+            Game.Add(this);
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            _attackText.SetPosition(Position.X, Position.Y);
+            _attackText.Text = Attack.ToString();
+
+            _defenseText.SetPosition(Position.X, Position.Y + Rectangle.Height - 18);
+            _defenseText.Text = Defense.ToString();
         }
     }
 
