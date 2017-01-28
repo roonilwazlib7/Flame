@@ -1,4 +1,10 @@
 {
     "Name": "Knight",
-    "UnitType": "Human"
+    "UnitType": "Human",
+
+    "Attack": 5,
+    "Defense": 5,
+    "Speed": 3,
+
+    "Abilities": ["Inspire"]
 }

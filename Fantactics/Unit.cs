@@ -64,6 +64,7 @@ namespace Fantactics
         public int Speed { get; set; }
         public int Column { get; set; }
         public int Row { get; set; }
+        public List<Ability> Abilities { get; set; }
         private TextBox _attackText;
         private TextBox _defenseText;
         private int distanceTraveled = 0;
@@ -71,7 +72,21 @@ namespace Fantactics
         public static Unit Create(string name, Game game, int column, int row)
         {
             Unit u = new Unit(game, Defs[name], column, row);
-            DebugConsole.Output("Fantactics", String.Format("Created Unit: {0} at {1},{2}. A:{3} D:{4} S:{5}", name, column, row, u.Attack, u.Defense, u.Speed));
+            string abilities = "";
+            if (Defs[name].Abilities != null)
+            {
+                foreach (string abl in Defs[name].Abilities)
+                {
+                    abilities += abl + ",";
+                    if (Ability.Defs.ContainsKey(abl))
+                    {
+                        u.Abilities.Add(Ability.Create(abl));
+                    }
+                    
+                }
+            }
+
+            DebugConsole.Output("Fantactics", String.Format("Created Unit: {0} at {1},{2}. A:{3} D:{4} S:{5}\nWith Abilities:{6}", name, column, row, u.Attack, u.Defense, u.Speed, abilities));
             return u;
         }
         public Unit(Game game, UnitDef def, int column, int row):base(game, 0, 0)
@@ -86,6 +101,8 @@ namespace Fantactics
             Speed = def.Speed;
             Column = column;
             Row = row;
+
+            Abilities = new List<Ability>();
 
             Position.Set(position.X, position.Y);
             BindToTexture(def.MainImage);
@@ -148,6 +165,8 @@ namespace Fantactics
         public int Defense { get; set; }
         public int Speed { get; set; }
         public string MainImage { get; set; }
+
+        public string[] Abilities { get; set; }
     }
 
     #region States

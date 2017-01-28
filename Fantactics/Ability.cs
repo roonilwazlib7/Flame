@@ -42,7 +42,7 @@ namespace Fantactics
 
                     if (parts[0] == "NAME")
                     {
-                        abilityName = parts[1];
+                        abilityName = parts[1].Replace("\r", "");
                     }
                 }
 
@@ -64,7 +64,7 @@ namespace Fantactics
 
             foreach(string line in lines)
             {
-                if (line[0] == '#')
+                if ( line == "" || line[0] == '#')
                 {
                     continue;
                 }
@@ -75,6 +75,8 @@ namespace Fantactics
 
                 HandleCommand(command, arg, ability);
             }
+
+            DebugConsole.Output("Fantactics", "Created Ability: " + name);
 
             return ability;
         }
