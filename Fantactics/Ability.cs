@@ -10,10 +10,11 @@ namespace Fantactics
     {
         public static Dictionary<string,string> Defs = new Dictionary<string,string>();
         public Unit Unit {get; set;}
-
+        //presentation
         public string Name {get; set;}
         public string Icon { get; set; }
         public string Image { get; set; }
+        //functionality
         public string Affects {get; set;}
         public string Attack { get; set; }
         public string Defense {get; set;}
@@ -51,7 +52,7 @@ namespace Fantactics
                     Defs.Add(abilityName, abilityDef);
                     DebugConsole.Output("Fantactics", "Loaded ability: " + abilityName);
                 }
-                
+
             }
         }
 
@@ -128,27 +129,25 @@ namespace Fantactics
             }
         }
 
-        private static int ParseIntModifiers(string mod)
-        {
-            if (mod.Contains("+"))
-            {
-                return int.Parse(StripNonNumerical(mod));
-            }
-            else if (mod.Contains("-"))
-            {
-                return -1 * int.Parse(StripNonNumerical(mod));
-            }
-            return 0;
-        }
-
-        private static string StripNonNumerical(string str)
-        {
-            return str.Replace("+","").Replace("-","").Replace("\n","")
-                      .Replace("\t", "").Replace(" ","").Replace("\r","");
-        }
-
         public void Activate()
         {
+            List<Unit> units = new List<Unit>();
+            if (Area != null)
+            {
+                // area attack
+            }
+            if (Affects.Contains("SELF"))
+            {
+                units.Add(Unit);
+            }
+
+            foreach(Unit u in units)
+            {
+                Effect e = new Effect(u);
+
+                e.ApplyAttack(Attack);
+                e.ApplyDeffense(Defense);
+            }
         }
 
     }

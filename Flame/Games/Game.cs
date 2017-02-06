@@ -116,7 +116,7 @@ namespace Flame.Games
         protected override void OnKeyDown(KeyboardKeyEventArgs e)
         {
             base.OnKeyDown(e);
-            
+
         }
 
         protected override void OnClosed(EventArgs e)
@@ -144,6 +144,11 @@ namespace Flame.Games
         {
             thing.Uid = _uidCounter++;
             _thingsToAdd.Add(thing);
+        }
+
+        public T As()
+        {
+            return this as T;
         }
 
         public virtual void Update()

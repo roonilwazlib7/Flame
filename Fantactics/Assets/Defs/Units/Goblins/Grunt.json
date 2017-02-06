@@ -1,0 +1,9 @@
+{
+    "Name": "Goblin",
+    "UnitType": "Goblin",
+    "BuildCost": 1,
+
+    "Speed": 1,
+    "Attack": 0,
+    "Defense": 5
+}

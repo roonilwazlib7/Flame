@@ -1,0 +1,10 @@
+{
+    "Name": "Druid",
+    "UnitType": "Elf",
+
+    "Speed": 3,
+    "Attack": 1,
+    "Defense": 2,
+
+    "Abilities": ["HealingSpirit", "SongOfNature"]
+}

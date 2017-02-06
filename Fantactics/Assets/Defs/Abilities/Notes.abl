@@ -1,0 +1,59 @@
+# Help file for creating Fantactics Abilities
+# - one command per line
+# - commands are all-caps
+# - lines beginning with pounds are ignored
+#   commands:
+#   meta commands:
+#
+NAME value
+# names the ability
+#
+ICON value
+# the path to an image that represents the ability
+# note: '~' shorcuts to the games main asset directory
+#
+IMAGE value
+# still need to figure this one out
+#
+#   core commands:
+TYPE ACTIVATED or PASSIVE
+# determines if ability has to be activated or just provides passive effects
+#
+AFFECTS SELF or TEAM or ENEMY
+# determines who the ability effects
+#
+TRIGGER-ON ATTACK or DEFEND or CONFLICT or DIE or TURN-START or TURN-END
+# activates abilities when event occurs
+#
+ATTACK value
+# change to attack
+#
+DEFENSE value
+# change to defense
+#
+SPEED value
+# change to speed
+#
+HEALTH value
+# change to health
+#
+GOLD value
+# change to gold
+#
+AREA value
+# if ability occurs over an area, determines radius
+#
+LASTS value or FOREVER
+# controls how long ability's effects last
+#
+COOLDOWN value
+# controls how many turns before the ability can be used again
+#
+ENABLE value or ALL
+# grant abilities
+#
+DISABLE value or ALL
+# disable abilities
+#
+HACK code
+#

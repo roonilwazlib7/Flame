@@ -1,0 +1,10 @@
+{
+    "Name": "Alchemist",
+    "UnitType": "Human",
+
+    "Speed": 1,
+    "Attack": 1,
+    "Defense": 1,
+
+    "Abilities": ["PhilosophersStone"]
+}

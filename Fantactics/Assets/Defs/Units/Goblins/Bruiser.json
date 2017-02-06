@@ -1,7 +1,7 @@
 {
     "Name": "Bruiser",
     "UnitType": "Goblin",
-    "BuildCost": 1,
+    "BuildCost": 3,
 
     "Attack": 3,
     "Defense": 1,

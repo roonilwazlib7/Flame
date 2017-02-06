@@ -1,4 +1,10 @@
 {
     "Name": "TreeScout",
-    "UnitType": "Elf"
+    "UnitType": "Elf",
+
+    "Speed": 5,
+    "Attack": 1,
+    "Defense": 1,
+
+    "Abilities": ["HealingSpirit"]
 }

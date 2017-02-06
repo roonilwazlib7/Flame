@@ -1,0 +1,11 @@
+{
+    "Name": "Warlord",
+    "UnitType": "Goblin",
+    "BuildCost": 5,
+
+    "Attack": 5,
+    "Defense": 2,
+    "Speed": 2,
+
+    "Abilities": ["BloodThurst", "Intimidate"]
+}

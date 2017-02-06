@@ -1,0 +1,20 @@
+///////////////////////////////////////
+//  Fantactics                      //
+/////////////////////////////////////
+
+A game of strategy, a game of fun.
+
+Gold, gold is what builds you units.
+You get new gold every turn, the more territory you control,
+the more gold you get.
+
+What is the goal? To capture the enemy "Home Base"
+
+But who should I play as?
+
+Humans are balanced.
+Elves are fast.
+Goblins are aggressive.
+Wizards control.
+
+How do I capture territory? control points (do not have to have units on them)

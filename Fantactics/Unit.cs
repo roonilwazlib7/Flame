@@ -62,6 +62,7 @@ namespace Fantactics
         public int Attack { get; set; }
         public int Defense { get; set; }
         public int Speed { get; set; }
+        public int Range {get; set;}
         public int Column { get; set; }
         public int Row { get; set; }
         public List<Ability> Abilities { get; set; }
@@ -82,7 +83,7 @@ namespace Fantactics
                     {
                         u.Abilities.Add(Ability.Create(abl));
                     }
-                    
+
                 }
             }
 
@@ -95,10 +96,11 @@ namespace Fantactics
 
             Name = def.Name;
             UnitType = def.UnitType;
-            BuildCost = def.BuildCost;
-            Attack = def.Attack;
-            Defense = def.Defense;
-            Speed = def.Speed;
+            BuildCost = def.BuildCost ?? 1;
+            Attack = def.Attack ?? 1;
+            Defense = def.Defense ?? 1;
+            Speed = def.Speed ?? 1;
+            Range = def.Range ?? 1;
             Column = column;
             Row = row;
 
@@ -152,8 +154,13 @@ namespace Fantactics
             else
             {
                 State.Switch("idle");
-            }          
+            }
         }
+
+        #region events
+        public event FlameMessageHandler OnTurnEnd;
+        public event FlameMessageHandler OnTurnStart;
+        #endregion
     }
 
     class UnitDef

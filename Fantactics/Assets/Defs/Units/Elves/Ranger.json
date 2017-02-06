@@ -1,0 +1,10 @@
+{
+    "Name": "Ranger",
+    "UnitType": "Elf",
+
+    "Speed": 4,
+    "Attack": 2,
+    "Defense": 2,
+
+    "Abilities": ["HealingSpirit"]
+}

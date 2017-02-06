@@ -1,4 +1,7 @@
 NAME BloodThurst
+# Intended for goblins, this passive
+# ability encourages aggressive play
+TYPE PASSIVE
 AFFECTS SELF
-ATTACK +10
-DEFENSE -5
+TRIGGER-ON ATTACK
+HEALTH +1
