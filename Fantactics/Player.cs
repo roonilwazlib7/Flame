@@ -32,8 +32,6 @@ namespace Fantactics
         {
             Units.Add(Unit.Create(unitName, _fantactics, column, row, this));
 
-            Server.Client.Send(new Server.Messages.CreateUnit(unitName, column, row).Serialize());
-
             return this;
         }
     }

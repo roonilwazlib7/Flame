@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
+using Flame.Debug;
 
-namespace Fantactics.Server
+namespace Fantactics.Network
 {
     class Client
     {
@@ -26,6 +27,11 @@ namespace Fantactics.Server
             {
                 Console.WriteLine(e.ToString());
             }
+        }
+
+        public static string Send(FantacticsServer.Messages.Message message)
+        {
+            return Send(message.Serialize());
         }
 
         public static string Send(string data)
@@ -50,14 +56,19 @@ namespace Fantactics.Server
             int bytesSent = _sender.Send(msg);
 
             // Receive the response from the remote device.  
-           int bytesRec = _sender.Receive(_bytes);
-            Console.WriteLine("Echoed test = {0}", Encoding.ASCII.GetString(_bytes, 0, bytesRec));
+            int bytesRec = _sender.Receive(_bytes);
+           
 
             // Release the socket.  
             _sender.Shutdown(SocketShutdown.Both);
             _sender.Close();
 
-            return Encoding.ASCII.GetString(_bytes, 0, bytesRec).Replace("<EOF>", "");
+            //get the response
+            string response = Encoding.ASCII.GetString(_bytes, 0, bytesRec).Replace("<EOF>", "");
+
+            DebugConsole.Output("Fantactics-Server", "Recieved Response From Server: " + response);
+
+            return response;
         }
     }
 }

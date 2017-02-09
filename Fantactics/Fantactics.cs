@@ -24,6 +24,7 @@ namespace Fantactics
 
             // set up our debug channels
             DebugConsole.AddChannel("Fantactics", ConsoleColor.DarkCyan, ConsoleColor.Black);
+            DebugConsole.AddChannel("Fantactics-Server", ConsoleColor.DarkBlue, ConsoleColor.Black);
 
             Assets.LoadTexture("Assets/Fonts/impact-18.png", "impact-18");
             Assets.LoadFile("Assets/Fonts/impact-18.json", "impact-18");

@@ -20,12 +20,12 @@ namespace Fantactics.GameModes
             _fantactics = fantactics;
 
             // server stuff
-            Server.Client.StartClient();
+            Network.Client.StartClient();
 
             AddPlayer("Player1", 100);
             AddPlayer("Player2", 100);
 
-            int playerUid = int.Parse(Server.Client.Send(new Server.Messages.EstablishConnection().Serialize()));
+            int playerUid = int.Parse(Network.Client.Send(new FantacticsServer.Messages.EstablishGame(0)));
 
             LocalPlayer = _players[playerUid];
 

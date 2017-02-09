@@ -65,10 +65,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server\Client.cs" />
-    <Compile Include="Server\Messages\Base.cs" />
-    <Compile Include="Server\Messages\CreateUnit.cs" />
-    <Compile Include="Server\Messages\EstablishConnection.cs" />
+    <Compile Include="Network\Client.cs" />
     <Compile Include="Unit.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,6 +90,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FantacticsServer\FantacticsServer.csproj">
+      <Project>{6cb018d3-30c4-481e-ad39-436a9f43eaef}</Project>
+      <Name>FantacticsServer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Flame\Flame.csproj">
       <Project>{2e4845af-5ba1-4529-acb0-9b697184f059}</Project>
       <Name>Flame</Name>
