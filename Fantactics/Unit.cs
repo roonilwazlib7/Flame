@@ -59,20 +59,23 @@ namespace Fantactics
         public string Name { get; set; }
         public string UnitType { get; set; }
         public int BuildCost { get; set; }
+        public int Health { get; set; }
         public int Attack { get; set; }
         public int Defense { get; set; }
         public int Speed { get; set; }
         public int Range {get; set;}
         public int Column { get; set; }
         public int Row { get; set; }
+        public Player Player { get; set; }
         public List<Ability> Abilities { get; set; }
         private TextBox _attackText;
         private TextBox _defenseText;
         private int distanceTraveled = 0;
 
-        public static Unit Create(string name, Game game, int column, int row)
+        public static Unit Create(string name, Game game, int column, int row, Player player = null)
         {
             Unit u = new Unit(game, Defs[name], column, row);
+            u.Player = player;
             string abilities = "";
             if (Defs[name].Abilities != null)
             {
@@ -96,11 +99,11 @@ namespace Fantactics
 
             Name = def.Name;
             UnitType = def.UnitType;
-            BuildCost = def.BuildCost ?? 1;
-            Attack = def.Attack ?? 1;
-            Defense = def.Defense ?? 1;
-            Speed = def.Speed ?? 1;
-            Range = def.Range ?? 1;
+            BuildCost = def.BuildCost;
+            Attack = def.Attack;
+            Defense = def.Defense;
+            Speed = def.Speed;
+            Range = def.Range;
             Column = column;
             Row = row;
 
@@ -157,9 +160,23 @@ namespace Fantactics
             }
         }
 
+        public void DisplayAbilities()
+        {
+            
+        }
+
         #region events
         public event FlameMessageHandler OnTurnEnd;
         public event FlameMessageHandler OnTurnStart;
+
+        public static event FlameMessageHandler UnitSelected;
+        #endregion
+
+        #region triggers
+        public static void TriggerUnitSelected(object sender, Message m)
+        {
+            UnitSelected?.Invoke(sender, m);
+        }
         #endregion
     }
 
@@ -171,6 +188,7 @@ namespace Fantactics
         public int Attack { get; set; }
         public int Defense { get; set; }
         public int Speed { get; set; }
+        public int Range { get; set; }
         public string MainImage { get; set; }
 
         public string[] Abilities { get; set; }
@@ -206,6 +224,7 @@ namespace Fantactics
 
         private void Click(object sender, Message m)
         {
+            if (!(sender as Unit).Player.HasControl) return;
             StateMachine.Switch("selected");
         }
     }
@@ -216,17 +235,23 @@ namespace Fantactics
         public override void Start(Sprite controlObject)
         {
             Unit u = controlObject as Unit;
-            _possibleMoveCells = (controlObject.Game as Fantactics).GameGrid.GetCellsFromRadius(u.Column, u.Row, u.Speed);
+            Unit.TriggerUnitSelected(u, new Message(u));
+            controlObject.Game.As<Fantactics>().BottomMenu.Show();
+            controlObject.Game.As<Fantactics>().BottomMenu.SetAbilities(u.Abilities.ToArray());
+            _possibleMoveCells = controlObject.Game.As<Fantactics>().GameGrid.GetCellsFromRadius(u.Column, u.Row, u.Speed);
 
             foreach(Cell c in _possibleMoveCells)
             {
                 c.Opacity.Value = 0;
                 c.OnClick += u.MoveToCell;
             }
+
+            u.DisplayAbilities();
         }
         public override void End(Sprite controlObject)
         {
             Unit u = controlObject as Unit;
+            controlObject.Game.As<Fantactics>().BottomMenu.Hide();
             foreach (Cell c in _possibleMoveCells)
             {
                 c.Opacity.Value = 1;

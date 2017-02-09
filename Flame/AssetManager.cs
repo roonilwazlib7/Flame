@@ -65,6 +65,11 @@ namespace Flame
             return Textures[id];
         }
 
+        public bool TextureExists(string id)
+        {
+            return Textures.ContainsKey(id);
+        }
+
         public string GetFile(string id)
         {
             return Files[id];

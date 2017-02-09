@@ -102,7 +102,11 @@ namespace Fantactics
                     {
                         continue;
                     }
-                    cells.Add(GetCell(i, j));
+                    if( Math.Abs(i - column) + Math.Abs(j - row) <= radius)
+                    {
+                        cells.Add(GetCell(i, j));
+                    }
+                    
                 }
             }
 
@@ -144,6 +148,7 @@ namespace Fantactics
             Row = row;
 
             Game.Add(Terrain);
+
         }
         public Terrain  Terrain { get; }
     }

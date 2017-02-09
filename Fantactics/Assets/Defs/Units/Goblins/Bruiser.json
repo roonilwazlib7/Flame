@@ -5,6 +5,7 @@
 
     "Attack": 3,
     "Defense": 1,
-
     "Speed": 2,
+
+    "Abilities": ["BloodThurst"]
 }

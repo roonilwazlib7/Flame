@@ -44,6 +44,10 @@ namespace Fantactics
                     if (parts[0] == "NAME")
                     {
                         abilityName = parts[1].Replace("\r", "");
+                        if (File.Exists("Assets/Abilities/" + abilityName + "-Icon.png"))
+                        {
+                            game.Assets.LoadTexture("Assets/Abilities/" + abilityName + "-Icon.png", abilityName + "-Icon");
+                        }
                     }
                 }
 
@@ -54,6 +58,8 @@ namespace Fantactics
                 }
 
             }
+
+            game.Assets.LoadTexture("Assets/Abilities/Default.png", "Ability-Default");
         }
 
         public static Ability Create(string name)
@@ -146,7 +152,7 @@ namespace Fantactics
                 Effect e = new Effect(u);
 
                 e.ApplyAttack(Attack);
-                e.ApplyDeffense(Defense);
+                //e.ApplyDeffense(Defense);
             }
         }
 

@@ -13,6 +13,7 @@ namespace Fantactics
     class Fantactics: Game
     {
         public GameGrid GameGrid { get; set; }
+        public BottomMenu BottomMenu { get; set; }
         public Fantactics():base("Fantactics")
         {
         }
@@ -30,6 +31,7 @@ namespace Fantactics
             GameGrid.LoadAssets(this);
             Unit.Load(this);
             Ability.Load(this);
+            BottomMenu.Load(this);
         }
 
         public override void Initialize()
@@ -38,12 +40,10 @@ namespace Fantactics
 
 
             GameGrid = new GameGrid(this, 64, 64);
+            BottomMenu = new BottomMenu(this);
+            BottomMenu.Hide();
 
-            Unit u = Unit.Create("Bruiser", this, 5, 5);
-            Unit u2 = Unit.Create("GrandWizard", this, 10, 7);
-            Unit u3 = Unit.Create("TreeScout", this, 15, 10);
-            Unit u4 = Unit.Create("Knight", this, 20, 8);
-            Unit u5 = Unit.Create("Warlock", this, 14, 0);
+            GameModes.TestMode testMode = new GameModes.TestMode(this);
         }
 
         public override void Draw()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Flame;
 
 namespace Fantactics
 {
@@ -13,12 +14,12 @@ namespace Fantactics
 
         public const int LASTS_FOREVER = -1000;
 
-        public Unit(Unit unit)
+        public Effect(Unit unit)
         {
             Unit = unit;
 
-            unit.OnTurnEnd += TurnEnd;
-            unit.OnTurnStart += TurnStart;
+            Unit.OnTurnEnd += TurnEnd;
+            Unit.OnTurnStart += TurnStart;
         }
 
         public void TurnStart(object sender, Message m)
@@ -50,11 +51,16 @@ namespace Fantactics
             Unit.Attack = IntegerMod(Unit.Attack, attackMod);
         }
 
+        public void ApplyDefense(string defenseMod)
+        {
+            Unit.Defense = IntegerMod(Unit.Defense, defenseMod);
+        }
+
         private int IntegerMod(int origVaue, string mod)
         {
             if (mod == null)
             {
-                return origVaue
+                return origVaue;
             }
             if (mod.Contains("CHANCE"))
             {
@@ -72,6 +78,7 @@ namespace Fantactics
             {
                 return int.Parse(mod.Replace("=", ""));
             }
+            return 0;
         }
     }
 }

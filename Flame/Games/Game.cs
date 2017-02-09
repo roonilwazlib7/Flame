@@ -146,9 +146,17 @@ namespace Flame.Games
             _thingsToAdd.Add(thing);
         }
 
-        public T As()
+        public T As<T>()
         {
-            return this as T;
+            object boxed = this;
+            if (boxed is T)
+            {
+                return (T)boxed;
+            }
+            else
+            {
+                throw new Exception("");
+            }
         }
 
         public virtual void Update()
