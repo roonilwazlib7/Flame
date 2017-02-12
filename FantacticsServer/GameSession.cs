@@ -25,9 +25,14 @@ namespace FantacticsServer
             switch (m.Code)
             {
                 case "EstablishGame":
+                    UnitPackets.Add(Uids, new List<Packets.UnitPacket>());
                     return (Uids++).ToString();
                 case "CreateUnit":
+                    Messages.CreateUnit createUnitMessage = JsonConvert.DeserializeObject<Messages.CreateUnit>(message);
+                    UnitPackets[createUnitMessage.Uid].Add(createUnitMessage.UnitPacket);
                     return "";
+                case "GetUnits":
+                    return JsonConvert.SerializeObject(UnitPackets);
             }
 
             return message;

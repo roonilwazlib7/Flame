@@ -7,12 +7,15 @@ using Flame.Debug;
 using Flame.Sprites;
 using Flame.Geometry;
 using Newtonsoft.Json;
+using FantacticsServer.Packets;
 
 namespace Fantactics
 {
     class Unit: Sprite
     {
         public static Dictionary<string, UnitDef> Defs = new Dictionary<string, UnitDef>();
+        private static Dictionary<string, Unit> Units = new Dictionary<string, Unit>();
+        public static int unitsGenerated = 0;
         public static void Load(Game game)
         {
             game.Assets.LoadTexture("Assets/Units/default.png", "unit-default");
@@ -56,6 +59,7 @@ namespace Fantactics
             if (def.Speed == 0) def.Speed = 1;
         }
 
+        public string UnitId { get; set; }
         public string Name { get; set; }
         public string UnitType { get; set; }
         public int BuildCost { get; set; }
@@ -72,7 +76,7 @@ namespace Fantactics
         private TextBox _defenseText;
         private int distanceTraveled = 0;
 
-        public static Unit Create(string name, Game game, int column, int row, Player player = null)
+        public static Unit Create(string name, Game game, int column, int row, Player player = null, string id = null)
         {
             Unit u = new Unit(game, Defs[name], column, row);
             u.Player = player;
@@ -90,9 +94,29 @@ namespace Fantactics
                 }
             }
 
+            if (player != null)
+            {
+                if (id != null)
+                {
+                    u.UnitId = player.Uid + "-" + id;
+                }
+                else
+                {
+                    u.UnitId = player.Uid + "-" + (unitsGenerated++).ToString();
+                    Network.Client.Send(new FantacticsServer.Messages.CreateUnit(player.Uid, u.GetPacket()));
+                }
+            }
+
+            Units.Add(u.UnitId, u);           
             DebugConsole.Output("Fantactics", String.Format("Created Unit: {0} at {1},{2}. A:{3} D:{4} S:{5}\nWith Abilities:{6}", name, column, row, u.Attack, u.Defense, u.Speed, abilities));
             return u;
         }
+
+        public static bool UnitExists(string uid)
+        {
+            return Units.ContainsKey(uid);
+        }
+
         public Unit(Game game, UnitDef def, int column, int row):base(game, 0, 0)
         {
             Vector position = (game as Fantactics).GameGrid.GetPositionFromCell(column, row);
@@ -163,6 +187,16 @@ namespace Fantactics
         public void DisplayAbilities()
         {
             
+        }
+
+        public UnitPacket GetPacket()
+        {
+            UnitPacket u = new UnitPacket();
+            u.Row = Row;
+            u.Column = Column;
+            u.Name = Name;
+            u.Uid = UnitId;
+            return u;
         }
 
         #region events

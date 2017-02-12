@@ -31,7 +31,15 @@ namespace Fantactics.Network
 
         public static string Send(FantacticsServer.Messages.Message message)
         {
-            return Send(message.Serialize());
+            try
+            {
+                return Send(message.Serialize());
+            }
+            catch (Exception e)
+            {
+                DebugConsole.Output("Fantactics-Server", "Unable to connect to server");
+            }
+            return "";
         }
 
         public static string Send(string data)

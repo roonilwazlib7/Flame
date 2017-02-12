@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FantacticsServer.Packets
 {
-    class UnitPacket
+    public class UnitPacket
     {
         public string Name { get; set; }
-        public string Column { get; set; }
-        public string Row { get; set; }
-        public int Uid { get; set; }
+        public int Column { get; set; }
+        public int Row { get; set; }
+        public string Uid { get; set; }
     }
 }

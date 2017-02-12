@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using FantacticsServer.Packets;
 
 namespace FantacticsServer.Messages
 {
     public class Message
     {
-        public string Code = "";
+        public string Code { get; set; }
         public int Uid;
         public Message(int uid)
         {
@@ -27,6 +28,23 @@ namespace FantacticsServer.Messages
         public EstablishGame(int uid): base(uid)
         {
 
+        }
+    }
+
+    public class GetUnits : Message
+    {
+        public GetUnits(int uid): base(uid)
+        {
+
+        }
+    }
+
+    public class CreateUnit : Message
+    {
+        public UnitPacket UnitPacket { get; set; }
+        public CreateUnit(int uid, UnitPacket packet): base(uid)
+        {
+            UnitPacket = packet;
         }
     }
 }

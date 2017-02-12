@@ -149,6 +149,15 @@ namespace Fantactics
 
             Game.Add(Terrain);
 
+            OnMouseEnter += delegate (object sender, Message m)
+            {
+                Opacity.Value = 0.1;
+            };
+            OnMouseLeave += delegate (object sender, Message m)
+            {
+                Opacity.Value = 1;
+            };
+
         }
         public Terrain  Terrain { get; }
     }

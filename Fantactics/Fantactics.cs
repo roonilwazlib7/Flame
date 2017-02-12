@@ -14,6 +14,7 @@ namespace Fantactics
     {
         public GameGrid GameGrid { get; set; }
         public BottomMenu BottomMenu { get; set; }
+        GameModes.TestMode _testMode;
         public Fantactics():base("Fantactics")
         {
         }
@@ -44,7 +45,13 @@ namespace Fantactics
             BottomMenu = new BottomMenu(this);
             BottomMenu.Hide();
 
-            GameModes.TestMode testMode = new GameModes.TestMode(this);
+            _testMode = new GameModes.TestMode(this);
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            _testMode.Update();
         }
 
         public override void Draw()
