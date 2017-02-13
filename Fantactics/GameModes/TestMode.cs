@@ -23,7 +23,7 @@ namespace Fantactics.GameModes
             _fantactics = fantactics;
 
             // server stuff
-            Network.Client.StartClient();
+            Network.Client.SetUpConnections(null, 11000);
 
             AddPlayer("Player1", 100);
             AddPlayer("Player2", 100);
@@ -41,6 +41,8 @@ namespace Fantactics.GameModes
             {
                 LocalPlayer.CreateUnit("Bruiser", 10, 8);
             }
+
+            LocalPlayer.HasControl = true;
         }
 
         public void Update()
@@ -48,15 +50,18 @@ namespace Fantactics.GameModes
             string response = Network.Client.Send(new FantacticsServer.Messages.GetUnits(LocalPlayer.Uid));
             Dictionary<int, List<UnitPacket>> packets = JsonConvert.DeserializeObject<Dictionary<int, List<UnitPacket>>>(response);
 
-            foreach(KeyValuePair<int, List<UnitPacket>> p in packets)
+            if (packets != null)
             {
-                if (p.Key != LocalPlayer.Uid)
+                foreach (KeyValuePair<int, List<UnitPacket>> p in packets)
                 {
-                    foreach(UnitPacket pk in p.Value)
+                    if (p.Key != LocalPlayer.Uid)
                     {
-                        if (!Unit.UnitExists(pk.Uid))
+                        foreach (UnitPacket pk in p.Value)
                         {
-                            _players[p.Key].CreateUnit(pk.Name, pk.Column, pk.Row);
+                            if (!Unit.UnitExists(pk.Uid))
+                            {
+                                _players[p.Key].CreateUnit(pk.Name, pk.Column, pk.Row, false);
+                            }
                         }
                     }
                 }

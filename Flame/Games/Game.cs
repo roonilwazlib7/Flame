@@ -123,6 +123,7 @@ namespace Flame.Games
         {
             base.OnClosed(e);
             Jobs.TerminateThreads();
+            DebugConsole.MirrorToFile();
         }
         #endregion
 

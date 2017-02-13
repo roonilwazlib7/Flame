@@ -103,7 +103,6 @@ namespace Fantactics
                 else
                 {
                     u.UnitId = player.Uid + "-" + (unitsGenerated++).ToString();
-                    Network.Client.Send(new FantacticsServer.Messages.CreateUnit(player.Uid, u.GetPacket()));
                 }
             }
 

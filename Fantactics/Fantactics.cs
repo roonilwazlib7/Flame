@@ -24,6 +24,7 @@ namespace Fantactics
             base.LoadAssets();
 
             // set up our debug channels
+            DebugConsole.ClearFile();
             DebugConsole.AddChannel("Fantactics", ConsoleColor.DarkCyan, ConsoleColor.Black);
             DebugConsole.AddChannel("Fantactics-Server", ConsoleColor.DarkBlue, ConsoleColor.Black);
 

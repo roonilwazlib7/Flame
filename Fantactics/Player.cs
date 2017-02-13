@@ -28,10 +28,16 @@ namespace Fantactics
             _fantactics = fantactics;
         }
 
-        public Player CreateUnit(string unitName, int column, int row)
+        public Player CreateUnit(string unitName, int column, int row, bool sync = true)
         {
-            Units.Add(Unit.Create(unitName, _fantactics, column, row, this));
+            Unit u = Unit.Create(unitName, _fantactics, column, row, this);
+            Units.Add(u);
 
+            if (sync)
+            {
+                Network.Client.Send(new FantacticsServer.Messages.CreateUnit(Uid, u.GetPacket()));
+            }
+            
             return this;
         }
     }

@@ -13,21 +13,30 @@ namespace Fantactics.Network
     {
         private static Socket _sender;
         private static IPEndPoint _remoteEP;
-        private static byte[] _bytes = new byte[1024]; // Data buffer for incoming data.  
-
-        public static void StartClient()
+        private static byte[] _bytes = new byte[1024]; // Data buffer for incoming data.
+        private static string _hostName;
+        private static int _port;
+        private static int _connectionFailures = 0;
+        
+        public static void SetUpConnections(string hostName, int port)
         {
-
-            // Connect to a remote device.  
-            try
+            if (hostName == null)
             {
-
+                _hostName = Dns.GetHostName();
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e.ToString());
+                _hostName = hostName;
             }
-        }
+
+            _port = port;
+
+            // Establish the remote endpoint for the socket.  
+            // This example uses port 11000 on the local computer.  
+            IPHostEntry ipHostInfo = Dns.Resolve(_hostName);
+            IPAddress ipAddress = ipHostInfo.AddressList[0];
+            _remoteEP = new IPEndPoint(ipAddress, _port);
+        }  
 
         public static string Send(FantacticsServer.Messages.Message message)
         {
@@ -37,19 +46,19 @@ namespace Fantactics.Network
             }
             catch (Exception e)
             {
+                _connectionFailures++;
                 DebugConsole.Output("Fantactics-Server", "Unable to connect to server");
+                if (_connectionFailures >= 20)
+                {
+                    DebugConsole.Output("Fantactics-Server", "Giving up on server...");
+                }
             }
             return "";
         }
 
         public static string Send(string data)
         {
-            // Establish the remote endpoint for the socket.  
-            // This example uses port 11000 on the local computer.  
-            IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());
-            IPAddress ipAddress = ipHostInfo.AddressList[0];
-            _remoteEP = new IPEndPoint(ipAddress, 11000);
-
+            if (_connectionFailures >= 20) return "";
             // Create a TCP/IP  socket.  
             _sender = new Socket(AddressFamily.InterNetwork,
                 SocketType.Stream, ProtocolType.Tcp);
@@ -74,7 +83,7 @@ namespace Fantactics.Network
             //get the response
             string response = Encoding.ASCII.GetString(_bytes, 0, bytesRec).Replace("<EOF>", "");
 
-            DebugConsole.Output("Fantactics-Server", "Recieved Response From Server: " + response);
+            //DebugConsole.Output("Fantactics-Server", "Recieved Response From Server: " + response);
 
             return response;
         }
